@@ -1,8 +1,11 @@
 #include "Window.h"
 #include <iostream>
+#include <time.h>
 
 Window::Window(const float _Width, const float _Height)
 {
+	srand(time(NULL));
+
 	if (!init(_Width, _Height))
 		std::cout << "Initializing window/glfw has failed" << std::endl;
 
@@ -16,34 +19,12 @@ Window::~Window()
 
 void Window::render()
 {
-	glBlendFunc(GL_SRC_ALPHA, GL_ONE_MINUS_SRC_ALPHA);
-
 	glClearColor(0, 0, 0, 0);
 	glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
 	
 	//Draw Begin
 
-	glBegin(GL_TRIANGLES);
-
-	glColor3f(1, 0, 1);
-	glVertex2f(0, 0);
-	glVertex2f(-1, -1);
-	glVertex2f(1, -1);
-
-	glVertex2f(0, 0);
-	glVertex2f(1, 1);
-	glVertex2f(-1, 1);
-
-	glColor3f(0.75, 0, 0.75);
-	glVertex2f(0, 0);
-	glVertex2f(-1, 1);
-	glVertex2f(-1, -1);
-
-	glVertex2f(0, 0);
-	glVertex2f(1, -1);
-	glVertex2f(1, 0);
-
-	glEnd();
+	
 
 	//Draw End
 	
@@ -84,16 +65,19 @@ int Window::init(const float _Width, const float _Height)
 		return -1;
 
 	//For 3d
-	glfwWindowHint(GLFW_DEPTH_BITS, 24);
-	glfwWindowHint(GLFW_STENCIL_BITS, 8);
+	//glfwWindowHint(GLFW_DEPTH_BITS, 24);
+	//glfwWindowHint(GLFW_STENCIL_BITS, 8);
 	
 	//Normal
 	glfwWindowHint(GLFW_RESIZABLE, 0);
 	glfwWindowHint(GLFW_REFRESH_RATE, 60);
 	glfwWindowHint(GLFW_CONTEXT_VERSION_MINOR, 0);
 	glfwWindowHint(GLFW_CONTEXT_VERSION_MAJOR, 2);
+	
+	//Transparent window
 	//glfwWindowHint(GLFW_DECORATED, 0);
-	glfwWindowHint(GLFW_TRANSPARENT_FRAMEBUFFER, GLFW_TRUE);	
+	//glBlendFunc(GL_SRC_ALPHA, GL_ONE_MINUS_SRC_ALPHA);
+	//glfwWindowHint(GLFW_TRANSPARENT_FRAMEBUFFER, GLFW_TRUE);	
 
 	int count;
 	GLFWmonitor** monitors = glfwGetMonitors(&count);

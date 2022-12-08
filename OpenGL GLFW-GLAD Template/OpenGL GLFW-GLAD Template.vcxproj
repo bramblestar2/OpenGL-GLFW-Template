@@ -147,8 +147,8 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
-    <ClCompile Include="..\..\SFML-OpenGL-Shading-Texturing\SFML Template\Dependencies\glad.c" />
     <ClCompile Include="Events.cpp" />
+    <ClCompile Include="glad.c" />
     <ClCompile Include="Main.cpp" />
     <ClCompile Include="Window.cpp" />
   </ItemGroup>

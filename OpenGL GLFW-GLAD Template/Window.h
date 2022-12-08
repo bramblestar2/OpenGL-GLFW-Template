@@ -5,6 +5,8 @@
 #include <GLFW/glfw3.h>
 #include <GL/glew.h>
 #include <string>
+#include <vector>
+#include <glm/glm.hpp>
 
 class Window
 {
