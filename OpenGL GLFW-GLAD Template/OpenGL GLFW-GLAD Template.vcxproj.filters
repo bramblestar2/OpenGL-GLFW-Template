@@ -27,12 +27,18 @@
     <ClCompile Include="Window3D.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
+    <ClCompile Include="EventHandler.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Window2D.h">
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="Window3D.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="EventHandler.h">
       <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>
