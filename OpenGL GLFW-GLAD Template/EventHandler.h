@@ -10,6 +10,11 @@ class EventHandler
 /// STRUCTS FOR EVENTS
 /// 
 protected:
+	struct key
+	{
+
+	};
+
 	union events
 	{
 
