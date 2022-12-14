@@ -7,17 +7,17 @@
 class EventHandler
 {
 /// 
-/// STRUCTS FOR EVENTS
+/// Structs for events
 /// 
 protected:
-	struct key
+	struct Key
 	{
-
+		int key, scancode, action, mods;
 	};
 
 	union events
 	{
-
+		Key keys;
 	};
 
 /// 
