@@ -6,7 +6,7 @@
 int main()
 {
     Window2D window(300, 200, "Something");
-    
+
     while (window.isOpen())
     {
         glfwPollEvents();
