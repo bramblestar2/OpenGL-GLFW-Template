@@ -18,6 +18,8 @@ Events::Bundled Events::getEvent()
 
 bool Events::pollEvents()
 {
+	glfwPollEvents();
+
 	if (!handler.isEmpty())
 	{
 		handler.pop_event();

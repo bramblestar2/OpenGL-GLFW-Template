@@ -13,15 +13,12 @@ int main()
     event.setEventWindow(window.getWindow());
     while (window.isOpen())
     {
-        glfwPollEvents();
         while (event.pollEvents())
         {
             switch (event.getEvent().type)
             {
-            case EventTypes::CursorMoved:
-                double xpos = event.getEvent().event.cursorMoved.xpos;
-                double ypos = event.getEvent().event.cursorMoved.ypos;
-                std::cout << xpos << " - " << ypos << std::endl;
+            case EventTypes::Focused:
+                std::cout << "A";
                 break;
             }
         }
