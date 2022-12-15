@@ -25,6 +25,12 @@
     <Filter Include="Header Files\Events">
       <UniqueIdentifier>{cec11631-167f-4095-b585-65d72b833c4e}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Source Files\Essentials">
+      <UniqueIdentifier>{3a29806d-64fa-46dd-be94-9ff85324af27}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Header Files\Essentials">
+      <UniqueIdentifier>{ce2a4ea3-8c37-49bc-9eba-e2b329dbdebb}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Main.cpp">
@@ -48,6 +54,18 @@
     <ClCompile Include="Events\Events.cpp">
       <Filter>Source Files\Events</Filter>
     </ClCompile>
+    <ClCompile Include="Essentials\Vec2\Vec2.cpp">
+      <Filter>Source Files\Essentials</Filter>
+    </ClCompile>
+    <ClCompile Include="Essentials\Vec3\Vec3.cpp">
+      <Filter>Source Files\Essentials</Filter>
+    </ClCompile>
+    <ClCompile Include="View\View.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="Essentials\Mouse\Mouse.cpp">
+      <Filter>Source Files\Essentials</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Camera.h">
@@ -64,6 +82,18 @@
     </ClInclude>
     <ClInclude Include="Windows\Window3D.h">
       <Filter>Header Files\Windows</Filter>
+    </ClInclude>
+    <ClInclude Include="Essentials\Vec2\Vec2.h">
+      <Filter>Header Files\Essentials</Filter>
+    </ClInclude>
+    <ClInclude Include="Essentials\Vec3\Vec3.h">
+      <Filter>Header Files\Essentials</Filter>
+    </ClInclude>
+    <ClInclude Include="View\View.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="Essentials\Mouse\Mouse.h">
+      <Filter>Header Files\Essentials</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>

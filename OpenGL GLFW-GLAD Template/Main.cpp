@@ -2,15 +2,17 @@
 
 #include "Windows/Window2D.h"
 #include "Events/Events.h"
-
+#include "Essentials/Mouse/Mouse.h"
 
 int main()
 {
-    Window2D window(300, 200, "Window");
+    Window2D window(300, 300, "Window", true);
+    window.setDecorated(false);
     glfwSwapInterval(1);
 
     Events event;
     event.setEventWindow(window.getWindow());
+   
     while (window.isOpen())
     {
         //EVENTS
@@ -31,8 +33,19 @@ int main()
                 break;
             }
         }
+        
+        window.clear(0,0,0, 0);
 
-        window.clear();
+        float xpos, ypos;
+        xpos = sin(glfwGetTime());
+        ypos = cos(glfwGetTime());
+        glBegin(GL_QUADS);
+        glColor3d(abs(xpos) / 1.f, abs(ypos) / 1.f, abs(xpos + ypos) / 1.f);
+        glVertex2d(-0.5 + xpos,  0.5 + ypos);
+        glVertex2d( 0.5 + xpos,  0.5 + ypos);
+        glVertex2d( 0.5 + xpos, -0.5 + ypos);
+        glVertex2d(-0.5 + xpos, -0.5 + ypos);
+        glEnd();
 
         window.display();
     }

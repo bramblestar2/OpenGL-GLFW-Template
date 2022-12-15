@@ -150,17 +150,25 @@
   </ItemDefinitionGroup>
   <ItemGroup>
     <ClCompile Include="Camera.cpp" />
+    <ClCompile Include="Essentials\Mouse\Mouse.cpp" />
+    <ClCompile Include="Essentials\Vec2\Vec2.cpp" />
+    <ClCompile Include="Essentials\Vec3\Vec3.cpp" />
     <ClCompile Include="Events\EventHandler.cpp" />
     <ClCompile Include="Events\Events.cpp" />
     <ClCompile Include="glad.c" />
     <ClCompile Include="Main.cpp" />
+    <ClCompile Include="View\View.cpp" />
     <ClCompile Include="Windows\Window2D.cpp" />
     <ClCompile Include="Windows\Window3D.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Camera.h" />
+    <ClInclude Include="Essentials\Mouse\Mouse.h" />
+    <ClInclude Include="Essentials\Vec2\Vec2.h" />
+    <ClInclude Include="Essentials\Vec3\Vec3.h" />
     <ClInclude Include="Events\EventHandler.h" />
     <ClInclude Include="Events\Events.h" />
+    <ClInclude Include="View\View.h" />
     <ClInclude Include="Windows\Window2D.h" />
     <ClInclude Include="Windows\Window3D.h" />
   </ItemGroup>
