@@ -1,5 +1,7 @@
 #include "EventHandler.h"
 
+std::vector<EventHandler::events> EventHandler::eventList;
+
 int EventHandler::event_count() const
 {
 	return eventList.size();
