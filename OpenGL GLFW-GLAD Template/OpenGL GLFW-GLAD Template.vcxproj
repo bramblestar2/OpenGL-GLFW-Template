@@ -150,19 +150,19 @@
   </ItemDefinitionGroup>
   <ItemGroup>
     <ClCompile Include="Camera.cpp" />
-    <ClCompile Include="EventHandler.cpp" />
-    <ClCompile Include="Events.cpp" />
+    <ClCompile Include="Events\EventHandler.cpp" />
+    <ClCompile Include="Events\Events.cpp" />
     <ClCompile Include="glad.c" />
     <ClCompile Include="Main.cpp" />
-    <ClCompile Include="Window2D.cpp" />
-    <ClCompile Include="Window3D.cpp" />
+    <ClCompile Include="Windows\Window2D.cpp" />
+    <ClCompile Include="Windows\Window3D.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Camera.h" />
-    <ClInclude Include="EventHandler.h" />
-    <ClInclude Include="Events.h" />
-    <ClInclude Include="Window2D.h" />
-    <ClInclude Include="Window3D.h" />
+    <ClInclude Include="Events\EventHandler.h" />
+    <ClInclude Include="Events\Events.h" />
+    <ClInclude Include="Windows\Window2D.h" />
+    <ClInclude Include="Windows\Window3D.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

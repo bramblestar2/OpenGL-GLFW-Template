@@ -1,7 +1,7 @@
 #include <iostream>
 
-#include "Window2D.h"
-#include "Events.h"
+#include "Windows/Window2D.h"
+#include "Events/Events.h"
 
 
 int main()
