@@ -12,8 +12,7 @@ Window2D::Window2D(const unsigned int _Width,
     if (!glfwInit())
         return;
 
-    glfwWindowHint(GLFW_CONTEXT_VERSION_MAJOR, 2);
-    glfwWindowHint(GLFW_CONTEXT_VERSION_MINOR, 0);
+    setContext(0,0,3,3);
     glfwWindowHint(GLFW_TRANSPARENT_FRAMEBUFFER, _IsTransparent);
 
     window = glfwCreateWindow(_Width, _Height, _Title.c_str(), nullptr, nullptr);
@@ -87,6 +86,15 @@ void Window2D::setDecorated(const bool _IsDecorated)
 void Window2D::setSampling(const int _SamplingCount)
 {
     glfwSetWindowAttrib(window, GLFW_SAMPLES, _SamplingCount);
+}
+
+void Window2D::setContext(const int depthBits, const int stencilBits,
+    const int majorVersion, const int minorVersion)
+{
+    glfwSetWindowAttrib(window, GLFW_DEPTH_BITS, depthBits);
+    glfwSetWindowAttrib(window, GLFW_STENCIL_BITS, stencilBits);
+    glfwSetWindowAttrib(window, GLFW_CONTEXT_VERSION_MAJOR, majorVersion);
+    glfwSetWindowAttrib(window, GLFW_CONTEXT_VERSION_MINOR, minorVersion);
 }
 
 void Window2D::getSize(int* _Width, int* _Height)

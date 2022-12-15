@@ -26,6 +26,8 @@ public:
 	void setFloating(const bool _IsFloating);
 	void setDecorated(const bool _IsDecorated);
 	void setSampling(const int _SamplingCount);
+	void setContext(const int depthBits = 0, const int stencilBits = 0,
+					const int majorVersion = 2, const int minorVersion = 0);
 
 	void getSize(int* _Width, int* _Height);
 	void getPosition(int* _X, int* _Y);
