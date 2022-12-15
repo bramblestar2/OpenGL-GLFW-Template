@@ -7,6 +7,7 @@
 int main()
 {
     Window2D window(300, 200, "Window");
+    glfwSwapInterval(1);
 
     Events event;
     event.setEventWindow(window.getWindow());
@@ -17,9 +18,6 @@ int main()
         {
             switch (event.type())
             {
-            case EventTypes::Character:
-                std::cout << (char)event.event().character.codepoint << std::endl;
-                break;
             case EventTypes::Key:
                 if (event.event().keys.action == GLFW_PRESS)
                 {
