@@ -14,6 +14,8 @@ public:
 	~Events();
 
 	Bundled getEvent();
+	EventHandler::events event() const;
+	EventTypes type() const;
 
 	bool pollEvents();
 	void setEventWindow(GLFWwindow* window);

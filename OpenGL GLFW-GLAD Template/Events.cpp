@@ -16,6 +16,16 @@ Events::Bundled Events::getEvent()
 	return temp;
 }
 
+EventHandler::events Events::event() const
+{
+	return handler.current_event();
+}
+
+EventTypes Events::type() const
+{
+	return handler.current_type();
+}
+
 bool Events::pollEvents()
 {
 	glfwPollEvents();

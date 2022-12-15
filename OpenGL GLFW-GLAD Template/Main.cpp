@@ -15,7 +15,7 @@ int main()
     {
         while (event.pollEvents())
         {
-            switch (event.getEvent().type)
+            switch (event.type())
             {
             }
         }
