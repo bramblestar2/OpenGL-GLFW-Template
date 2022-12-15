@@ -8,9 +8,12 @@ Events::~Events()
 {
 }
 
-EventTypes Events::getType() const
+Events::Bundled Events::getEvent()
 {
-	return handler.current_type();
+	Bundled temp;
+	temp.event = handler.current_event();
+	temp.type = handler.current_type();
+	return temp;
 }
 
 bool Events::pollEvents()
@@ -27,12 +30,4 @@ bool Events::pollEvents()
 void Events::setEventWindow(GLFWwindow* window)
 {
 	handler.setup_events(window);
-}
-
-Events::Bundled Events::operator->()
-{
-	Bundled temp;
-	temp.event = handler.current_event();
-	temp.type = handler.current_type();
-	return temp;
 }

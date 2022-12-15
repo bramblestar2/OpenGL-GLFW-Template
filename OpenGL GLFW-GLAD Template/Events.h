@@ -13,12 +13,11 @@ public:
 	Events();
 	~Events();
 
-	EventTypes getType() const;
+	Bundled getEvent();
 
 	bool pollEvents();
 	void setEventWindow(GLFWwindow* window);
 
-	Events::Bundled operator->();
 private:
 	EventHandler handler;
 };
