@@ -39,6 +39,16 @@ void EventHandler::setup_events(GLFWwindow* window)
 	glfwSetJoystickCallback(joystick_callback);
 	glfwSetDropCallback(window, drop_callback);
 
+	glfwSetWindowCloseCallback(window, window_close_callback);
+	glfwSetWindowSizeCallback(window, window_size_callback);
+	glfwSetFramebufferSizeCallback(window, framebuffer_size_callback);
+	glfwSetWindowContentScaleCallback(window, window_content_scale_callback);
+	glfwSetWindowPosCallback(window, window_pos_callback);
+	glfwSetWindowIconifyCallback(window, window_iconify_callback);
+	glfwSetWindowMaximizeCallback(window, window_maximize_callback);
+	glfwSetWindowFocusCallback(window, window_focus_callback);
+	glfwSetWindowRefreshCallback(window, window_refresh_callback);
+
 	setup = true;
 }
 
@@ -112,5 +122,81 @@ void EventHandler::drop_callback(GLFWwindow* window, int count, const char** pat
 	temp.drop.count = count;
 	temp.drop.paths = paths;
 	eventTypeList.push_back(EventTypes::Drop);
+	eventList.push_back(temp);
+}
+
+//Window callbacks
+
+void EventHandler::window_close_callback(GLFWwindow* window)
+{
+	events temp;
+	eventTypeList.push_back(EventTypes::Closed);
+	eventList.push_back(temp);
+}
+
+void EventHandler::window_size_callback(GLFWwindow* window, int width, int height)
+{
+	events temp;
+	temp.sizeChanged.width = width;
+	temp.sizeChanged.height = height;
+	eventTypeList.push_back(EventTypes::SizeChanged);
+	eventList.push_back(temp);
+}
+
+void EventHandler::framebuffer_size_callback(GLFWwindow* window, int width, int height)
+{
+	events temp;
+	temp.bufferChanged.width = width;
+	temp.bufferChanged.height = height;
+	eventTypeList.push_back(EventTypes::BufferChanged);
+	eventList.push_back(temp);
+}
+
+void EventHandler::window_content_scale_callback(GLFWwindow* window, float xscale, float yscale)
+{
+	events temp;
+	temp.scaleChanged.xscale = xscale;
+	temp.scaleChanged.yscale = yscale;
+	eventTypeList.push_back(EventTypes::ScaleChanged);
+	eventList.push_back(temp);
+}
+
+void EventHandler::window_pos_callback(GLFWwindow* window, int xpos, int ypos)
+{
+	events temp;
+	temp.windowMoved.xpos = xpos;
+	temp.windowMoved.ypos = ypos;
+	eventTypeList.push_back(EventTypes::WindowMoved);
+	eventList.push_back(temp);
+}
+
+void EventHandler::window_iconify_callback(GLFWwindow* window, int iconified)
+{
+	events temp;
+	temp.iconified.iconified = iconified;
+	eventTypeList.push_back(EventTypes::Iconified);
+	eventList.push_back(temp);
+}
+
+void EventHandler::window_maximize_callback(GLFWwindow* window, int maximized)
+{
+	events temp;
+	temp.maximized.maximized = maximized;
+	eventTypeList.push_back(EventTypes::Maximized);
+	eventList.push_back(temp);
+}
+
+void EventHandler::window_focus_callback(GLFWwindow* window, int focused)
+{
+	events temp;
+	temp.focused.focused = focused;
+	eventTypeList.push_back(EventTypes::Focused);
+	eventList.push_back(temp);
+}
+
+void EventHandler::window_refresh_callback(GLFWwindow* window)
+{
+	events temp;
+	eventTypeList.push_back(EventTypes::Refresh);
 	eventList.push_back(temp);
 }

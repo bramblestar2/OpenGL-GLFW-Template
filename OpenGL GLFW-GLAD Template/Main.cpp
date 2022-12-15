@@ -18,7 +18,11 @@ int main()
         {
             switch (event.getEvent().type)
             {
-
+            case EventTypes::CursorMoved:
+                double xpos = event.getEvent().event.cursorMoved.xpos;
+                double ypos = event.getEvent().event.cursorMoved.ypos;
+                std::cout << xpos << " - " << ypos << std::endl;
+                break;
             }
         }
 

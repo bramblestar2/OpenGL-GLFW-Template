@@ -13,7 +13,17 @@ enum class EventTypes
 	MouseButton,
 	MouseScroll,
 	Joystick,
-	Drop
+	Drop,
+
+	Closed,
+	SizeChanged,
+	BufferChanged,
+	ScaleChanged,
+	WindowMoved,
+	Iconified,
+	Maximized,
+	Focused,
+	Refresh,
 };
 
 class EventHandler
@@ -22,48 +32,105 @@ class EventHandler
 /// Structs for events
 /// 
 protected:
+	//Input events
 	struct Key
 	{
 		int key, scancode, action, mods;
 	};
-
+	
 	struct Character
 	{
 		int codepoint;
 	};
-
+	
 	struct CursorMoved 
 	{
 		double xpos, ypos;
 	};
-
+	
 	struct CursorEntered
 	{
 		int entered;
 	};
-
+	
 	struct MouseButton
 	{
 		int button;
 		int action;
 		int mods;
 	};
-
+	
 	struct MouseScroll
 	{
 		double xoffset;
 		double yoffset;
 	};
-
+	
 	struct Joystick
 	{
 		int jid, event;
 	};
-
+	
 	struct Drop
 	{
 		int count;
 		const char** paths;
+	};
+
+	//Window events
+	
+	//Window closed
+	struct Closed
+	{
+
+	};
+
+	//Window size change
+	struct SizeChanged
+	{
+		int width, height;
+	};
+
+	//Frame buffer size change
+	struct BufferChanged
+	{
+		int width, height;
+	};
+
+	//Content scale change
+	struct ScaleChanged
+	{
+		float xscale, yscale;
+	};
+
+	//Window position moved
+	struct WindowMoved
+	{
+		int xpos, ypos;
+	};
+
+	//Window Iconified
+	struct Iconified
+	{
+		int iconified;
+	};
+
+	//Window maximized
+	struct Maximized
+	{
+		int maximized;
+	};
+
+	//Windows focus is changed
+	struct Focused
+	{
+		int focused;
+	};
+
+	//Wubdiw damage and refresh
+	struct Refresh
+	{
+
 	};
 
 	union events
@@ -76,6 +143,16 @@ protected:
 		MouseScroll mouseScroll;
 		Joystick joystick;
 		Drop drop;
+
+		Closed closed;
+		SizeChanged sizeChanged;
+		BufferChanged bufferChanged;
+		ScaleChanged scaleChanged;
+		WindowMoved windowMoved;
+		Iconified iconified;
+		Maximized maximized;
+		Focused focused;
+		Refresh refresh;
 	};
 
 /// 
@@ -118,5 +195,16 @@ private:
 	static void scroll_callback(GLFWwindow* window, double xoffset, double yoffset);
 	static void joystick_callback(int jid, int event);
 	static void drop_callback(GLFWwindow* window, int count, const char** paths);
+	
+	//Window callbacks
+	static void window_close_callback(GLFWwindow* window);
+	static void window_size_callback(GLFWwindow* window, int width, int height);
+	static void framebuffer_size_callback(GLFWwindow* window, int width, int height);
+	static void window_content_scale_callback(GLFWwindow* window, float xscale, float yscale);
+	static void window_pos_callback(GLFWwindow* window, int xpos, int ypos);
+	static void window_iconify_callback(GLFWwindow* window, int iconified);
+	static void window_maximize_callback(GLFWwindow* window, int maximized);
+	static void window_focus_callback(GLFWwindow* window, int focused);
+	static void window_refresh_callback(GLFWwindow* window);
 };
 
