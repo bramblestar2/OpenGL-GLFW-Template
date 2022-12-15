@@ -17,9 +17,6 @@ int main()
         {
             switch (event.getEvent().type)
             {
-            case EventTypes::Focused:
-                std::cout << "A";
-                break;
             }
         }
 
