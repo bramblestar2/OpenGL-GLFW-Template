@@ -1,6 +1,17 @@
 #include "EventHandler.h"
 
 std::vector<EventHandler::events> EventHandler::eventList;
+std::vector<EventTypes> EventHandler::eventTypeList;
+
+EventHandler::events EventHandler::current_event() const
+{
+	return topEvent;
+}
+
+EventTypes EventHandler::current_type() const
+{
+	return topEventType;
+}
 
 int EventHandler::event_count() const
 {
@@ -34,47 +45,72 @@ void EventHandler::setup_events(GLFWwindow* window)
 void EventHandler::key_callback(GLFWwindow* window, int key, int scancode, int action, int mods)
 {
 	events temp;
+	temp.keys.key = key;
+	temp.keys.scancode = scancode;
+	temp.keys.action = action;
+	temp.keys.mods = mods;
+	eventTypeList.push_back(EventTypes::Key);
 	eventList.push_back(temp);
 }
 
 void EventHandler::character_callback(GLFWwindow* window, unsigned int codepoint)
 {
 	events temp;
+	temp.character.codepoint = codepoint;
+	eventTypeList.push_back(EventTypes::Character);
 	eventList.push_back(temp);
 }
 
 void EventHandler::cursor_position_callback(GLFWwindow* window, double xpos, double ypos)
 {
 	events temp;
+	temp.cursorMoved.xpos = xpos;
+	temp.cursorMoved.ypos = ypos;
+	eventTypeList.push_back(EventTypes::CursorMoved);
 	eventList.push_back(temp);
 }
 
 void EventHandler::cursor_enter_callback(GLFWwindow* window, int entered)
 {
 	events temp;
+	temp.cursorEntered.entered = entered;
+	eventTypeList.push_back(EventTypes::CursorEntered);
 	eventList.push_back(temp);
 }
 
 void EventHandler::mouse_button_callback(GLFWwindow* window, int button, int action, int mods)
 {
 	events temp;
+	temp.mouseButton.button = button;
+	temp.mouseButton.action = action;
+	temp.mouseButton.mods = mods;
+	eventTypeList.push_back(EventTypes::MouseButton);
 	eventList.push_back(temp);
 }
 
 void EventHandler::scroll_callback(GLFWwindow* window, double xoffset, double yoffset)
 {
 	events temp;
+	temp.mouseScroll.xoffset = xoffset;
+	temp.mouseScroll.yoffset = yoffset;
+	eventTypeList.push_back(EventTypes::MouseScroll);
 	eventList.push_back(temp);
 }
 
 void EventHandler::joystick_callback(int jid, int event)
 {
 	events temp;
+	temp.joystick.jid = jid;
+	temp.joystick.event = event;
+	eventTypeList.push_back(EventTypes::Joystick);
 	eventList.push_back(temp);
 }
 
 void EventHandler::drop_callback(GLFWwindow* window, int count, const char** paths)
 {
 	events temp;
+	temp.drop.count = count;
+	temp.drop.paths = paths;
+	eventTypeList.push_back(EventTypes::Drop);
 	eventList.push_back(temp);
 }
