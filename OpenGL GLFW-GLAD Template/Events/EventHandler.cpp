@@ -120,7 +120,11 @@ void EventHandler::drop_callback(GLFWwindow* window, int count, const char** pat
 {
 	events temp;
 	temp.drop.count = count;
-	temp.drop.paths = paths;
+	
+	temp.drop.paths = count != 0 ? new std::string[count] : nullptr;
+	for (int i = 0; i < count; i++)
+		temp.drop.paths[i] = paths[i];
+	
 	eventTypeList.push_back(EventTypes::Drop);
 	eventList.push_back(temp);
 }
