@@ -7,7 +7,8 @@
 
 int main()
 {
-    Window2D window(300, 300, "Window");
+    Window2D window(300, 300, "Window", true);
+    window.setDecorated(false);
     glfwSwapInterval(1);
 
     Events event;
@@ -16,6 +17,8 @@ int main()
     View v1(Vec2f(300,300));
     window.setView(&v1);
 
+    Mouse m;
+    
     while (window.isOpen())
     {
         //EVENTS
@@ -37,11 +40,18 @@ int main()
             }
         }
 
-        window.clear(0,0,0,0);
+        window.clear(10,10,10,0);
 
         float xpos, ypos;
         xpos = sin(glfwGetTime());
         ypos = cos(glfwGetTime());
+
+        Vec2i pos, size;
+        window.getPosition(&pos.x, &pos.y);
+        window.getSize(&size.x, &size.y);
+        Vec2i windowCenterPos = Vec2i(pos.x + (size.x/2), pos.y + (size.y/2));
+        window.move((m.getPosition().x - windowCenterPos.x) / 10 + (xpos*(size.x/20)),
+                    (m.getPosition().y - windowCenterPos.y) / 10 + (ypos*(size.y/20)));
 
         glBegin(GL_QUADS);
         glColor3d(abs(xpos) / 1.f, abs(ypos) / 1.f, abs(xpos + ypos) / 1.f);
