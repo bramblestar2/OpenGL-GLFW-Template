@@ -39,9 +39,6 @@
     <ClCompile Include="glad.c">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="Camera.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
     <ClCompile Include="Windows\Window2D.cpp">
       <Filter>Source Files\Windows</Filter>
     </ClCompile>
@@ -60,17 +57,17 @@
     <ClCompile Include="Essentials\Vec3\Vec3.cpp">
       <Filter>Source Files\Essentials</Filter>
     </ClCompile>
-    <ClCompile Include="View\View.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
     <ClCompile Include="Essentials\Mouse\Mouse.cpp">
+      <Filter>Source Files\Essentials</Filter>
+    </ClCompile>
+    <ClCompile Include="Camera\Camera.cpp">
+      <Filter>Source Files\Essentials</Filter>
+    </ClCompile>
+    <ClCompile Include="View\View.cpp">
       <Filter>Source Files\Essentials</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="Camera.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
     <ClInclude Include="Events\EventHandler.h">
       <Filter>Header Files\Events</Filter>
     </ClInclude>
@@ -89,10 +86,13 @@
     <ClInclude Include="Essentials\Vec3\Vec3.h">
       <Filter>Header Files\Essentials</Filter>
     </ClInclude>
-    <ClInclude Include="View\View.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
     <ClInclude Include="Essentials\Mouse\Mouse.h">
+      <Filter>Header Files\Essentials</Filter>
+    </ClInclude>
+    <ClInclude Include="Camera\Camera.h">
+      <Filter>Header Files\Essentials</Filter>
+    </ClInclude>
+    <ClInclude Include="View\View.h">
       <Filter>Header Files\Essentials</Filter>
     </ClInclude>
   </ItemGroup>

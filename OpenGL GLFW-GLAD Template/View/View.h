@@ -8,7 +8,7 @@
 class View
 {
 public:
-	View(const Vec2f _Position = Vec2f(), const Vec2f _Size = Vec2f(100,100));
+	View(const Vec2f _Size = Vec2f(100,100), const Vec2f _Position = Vec2f());
 	~View();
 
 	void setPosition(const float _X = 0.f, const float _Y = 0.f);
@@ -27,5 +27,7 @@ private:
 	Vec2f m_position;
 	Vec2f m_size;
 	Vec2f m_scale;
+
+	bool m_updated;
 };
 

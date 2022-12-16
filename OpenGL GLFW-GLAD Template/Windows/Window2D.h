@@ -3,6 +3,7 @@
 #include <GLFW/glfw3.h>
 #include <GL/glew.h>
 #include <string>
+#include "../View/View.h"
 
 class Window2D
 {
@@ -19,6 +20,7 @@ public:
 	void setPosition(const int _X, const int _Y);
 	void setIcon(const int _Count, GLFWimage* _Images);
 	void setAspectRatio(const int _Numer, const int _Denom);
+	void setView(View* _View);
 
 	//Window Attributes
 	void setVisibility(const bool _IsVisible);
@@ -39,10 +41,11 @@ public:
 	
 	void clear(const float _R, const float _G, const float _B, const float _A = 255);
 	void clear();
-	void display();
+	virtual void display();
 	void close();
 
 protected:
 	GLFWwindow* window;
+	View* view;
 };
 

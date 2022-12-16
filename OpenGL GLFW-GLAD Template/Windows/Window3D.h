@@ -1,5 +1,6 @@
 #pragma once
 #include "Window2D.h"
+#include "../Camera/Camera.h"
 
 class Window3D : Window2D
 {
@@ -11,7 +12,9 @@ public:
 	Window3D();
 	~Window3D();
 
+	void setCamera(Camera* _Camera);
+	void display() override;
 private:
-
+	Camera* camera;
 };
 

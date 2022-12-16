@@ -6,6 +6,7 @@ Window2D::Window2D(const unsigned int _Width,
                    const std::string _Title,
                    const bool _IsTransparent)
 {
+    view = nullptr;
     window = nullptr;
 
     //INITIALIZE GLFW
@@ -30,6 +31,7 @@ Window2D::Window2D(const unsigned int _Width,
 
 Window2D::Window2D()
 {
+    view = nullptr;
     window = nullptr;
 }
 
@@ -61,6 +63,11 @@ void Window2D::setIcon(const int _Count, GLFWimage* _Images)
 void Window2D::setAspectRatio(const int _Numer, const int _Denom)
 {
     glfwSetWindowAspectRatio(window, _Numer, _Denom);
+}
+
+void Window2D::setView(View* _View)
+{
+    view = _View;
 }
 
 void Window2D::setVisibility(const bool _IsVisible)
@@ -145,5 +152,8 @@ void Window2D::clear()
 
 void Window2D::display()
 {   
+    if (view != nullptr)
+        view->update();
+
     glfwSwapBuffers(window);
 }

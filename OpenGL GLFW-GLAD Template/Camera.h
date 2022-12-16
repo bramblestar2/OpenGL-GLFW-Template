@@ -1,2 +1,0 @@
-#pragma once
-//THIS CLASS WILL HANDLE 3D VIEWING
