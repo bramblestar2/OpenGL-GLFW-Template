@@ -150,6 +150,7 @@
   </ItemDefinitionGroup>
   <ItemGroup>
     <ClCompile Include="Camera\Camera.cpp" />
+    <ClCompile Include="Clock.cpp" />
     <ClCompile Include="Essentials\Mouse\Mouse.cpp" />
     <ClCompile Include="Essentials\Vec2\Vec2.cpp" />
     <ClCompile Include="Essentials\Vec3\Vec3.cpp" />
@@ -163,6 +164,7 @@
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Camera\Camera.h" />
+    <ClInclude Include="Clock.h" />
     <ClInclude Include="Essentials\Mouse\Mouse.h" />
     <ClInclude Include="Essentials\Vec2\Vec2.h" />
     <ClInclude Include="Essentials\Vec3\Vec3.h" />
