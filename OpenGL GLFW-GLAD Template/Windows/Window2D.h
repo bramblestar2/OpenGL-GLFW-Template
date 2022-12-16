@@ -13,11 +13,12 @@ public:
 			 const std::string _Title,
 			 const bool _IsTransparent = GLFW_FALSE);
 	Window2D();
-	~Window2D();
+	virtual ~Window2D();
 
 	void setSize(const unsigned int _Width, const unsigned int _Height);
 	void setTitle(const std::string _Title);
 	void setPosition(const int _X, const int _Y);
+	void move(const int _X, const int _Y);
 	void setIcon(const int _Count, GLFWimage* _Images);
 	void setAspectRatio(const int _Numer, const int _Denom);
 	void setView(View* _View);

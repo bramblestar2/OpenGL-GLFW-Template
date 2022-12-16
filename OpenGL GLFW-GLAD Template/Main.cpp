@@ -8,7 +8,6 @@
 int main()
 {
     Window2D window(300, 300, "Window");
-
     glfwSwapInterval(1);
 
     Events event;
@@ -38,7 +37,7 @@ int main()
             }
         }
 
-        window.clear(0,0,0);
+        window.clear(0,0,0,0);
 
         float xpos, ypos;
         xpos = sin(glfwGetTime());

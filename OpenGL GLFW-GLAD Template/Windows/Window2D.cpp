@@ -55,6 +55,13 @@ void Window2D::setPosition(const int _X, const int _Y)
     glfwSetWindowPos(window, _X, _Y);
 }
 
+void Window2D::move(const int _X, const int _Y)
+{
+    Vec2i window_pos;
+    getPosition(&window_pos.x, &window_pos.y);
+    glfwSetWindowPos(window, window_pos.x + _X, window_pos.y + _Y);
+}
+
 void Window2D::setIcon(const int _Count, GLFWimage* _Images)
 {
     glfwSetWindowIcon(window, _Count, _Images);

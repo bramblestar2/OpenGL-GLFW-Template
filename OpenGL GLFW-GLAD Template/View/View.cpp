@@ -1,4 +1,6 @@
 #include "View.h"
+#include <glm/glm.hpp>
+#include <glm/gtc/matrix_transform.hpp>
 
 View::View(const Vec2f _Size, const Vec2f _Position)
 {
