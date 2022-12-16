@@ -165,6 +165,13 @@ public:
 		if (topEventType == EventTypes::Drop)
 			if (topEvent.drop.paths != nullptr)
 				delete[] topEvent.drop.paths;
+		
+		for (int i = 0; i < eventList.size(); i++)
+		{
+			if (eventTypeList.at(i) == EventTypes::Drop)
+				if (eventList.at(i).drop.paths != nullptr)
+					delete[] topEvent.drop.paths;
+		}
 	}
 	
 	void pop_event() 
