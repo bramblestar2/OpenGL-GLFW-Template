@@ -80,5 +80,38 @@ void example2D()
 
 void example3D()
 {
-    Window3D window;
+    Window3D window(300, 300, "Window");
+
+    glfwSwapInterval(1);
+
+    Events event;
+    event.setEventWindow(window.getWindow());
+
+    
+
+    while (window.isOpen())
+    {
+        //EVENTS
+        while (event.pollEvents())
+        {
+            switch (event.type())
+            {
+            case EventTypes::Key:
+                if (event.event().keys.action == GLFW_PRESS)
+                {
+                    switch (event.event().keys.key)
+                    {
+                    case GLFW_KEY_ESCAPE:
+                        window.close();
+                        break;
+                    }
+                }
+                break;
+            }
+        }
+
+        window.clear(10, 10, 10, 0);
+
+        window.display();
+    }
 }
