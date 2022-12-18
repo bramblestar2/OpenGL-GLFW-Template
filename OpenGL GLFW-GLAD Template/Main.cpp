@@ -11,9 +11,9 @@ void example3D();
 
 int main()
 {
-    example2D();
+    //example2D();
 
-    //example3D();
+    example3D();
 
     return 0;
 }
@@ -80,14 +80,18 @@ void example2D()
 
 void example3D()
 {
-    Window3D window(300, 300, "Window");
-
+    Window3D window(300, 300, "Window", true);
+    window.setDecorated(false);
     glfwSwapInterval(1);
 
     Events event;
     event.setEventWindow(window.getWindow());
 
-    
+    Camera c1(Vec2f(300,300));
+    c1.enableDepth();
+    c1.setViewDistance(1, 500);
+    c1.setPosition(glm::vec3(0,0,5));
+    window.setCamera(&c1);
 
     while (window.isOpen())
     {
@@ -110,7 +114,76 @@ void example3D()
             }
         }
 
-        window.clear(10, 10, 10, 0);
+        if (glfwGetKey(window.getWindow(), GLFW_KEY_W))
+            c1.move(Camera_Movement::FORWARD);
+        else if (glfwGetKey(window.getWindow(), GLFW_KEY_S))
+            c1.move(Camera_Movement::BACKWARD);
+        if (glfwGetKey(window.getWindow(), GLFW_KEY_A))
+            c1.move(Camera_Movement::LEFT);
+        else if (glfwGetKey(window.getWindow(), GLFW_KEY_D))
+            c1.move(Camera_Movement::RIGHT);
+        if (glfwGetKey(window.getWindow(), GLFW_KEY_SPACE))
+            c1.move(Camera_Movement::UP);
+        else if (glfwGetKey(window.getWindow(), GLFW_KEY_LEFT_SHIFT))
+            c1.move(Camera_Movement::DOWN);
+        
+        if (glfwGetKey(window.getWindow(), GLFW_KEY_UP))
+        {
+            c1.addPitch(1);
+            if (c1.getPitch() > 89.f)
+                c1.setPitch(89.f);
+        }
+        else if (glfwGetKey(window.getWindow(), GLFW_KEY_DOWN))
+        {
+            c1.addPitch(-1);
+            if (c1.getPitch() < -89.f)
+                c1.setPitch(-89.f);
+        }
+        if (glfwGetKey(window.getWindow(), GLFW_KEY_RIGHT))
+            c1.addYaw(1);
+        else if (glfwGetKey(window.getWindow(), GLFW_KEY_LEFT))
+            c1.addYaw(-1);
+
+        window.clear(0, 0, 0, 0);
+
+        glBegin(GL_QUADS);
+        //Front
+        glColor3f(1,1,1);
+        glVertex3f(  0,   0,   0);
+        glVertex3f(100,   0,   0);
+        glVertex3f(100, 100,   0);
+        glVertex3f(  0, 100,   0);
+        //Back
+        glColor3f(1,0,1);
+        glVertex3f(  0,   0,-100);
+        glVertex3f(100,   0,-100);
+        glVertex3f(100, 100,-100);
+        glVertex3f(  0, 100,-100);
+        //Left
+        glColor3f(1,0,0);
+        glVertex3f(  0,   0,   0);
+        glVertex3f(  0,   0,-100);
+        glVertex3f(  0, 100,-100);
+        glVertex3f(  0, 100,   0);
+        //Right
+        glColor3f(0,0,1);
+        glVertex3f(100,   0,   0);
+        glVertex3f(100,   0,-100);
+        glVertex3f(100, 100,-100);
+        glVertex3f(100, 100,   0);
+        //Bottom
+        glColor3f(0,1,1);
+        glVertex3f(  0,   0,   0);
+        glVertex3f(  0,   0,-100);
+        glVertex3f(100,   0,-100);
+        glVertex3f(100,   0,   0);
+        //Top
+        glColor3f(0,1,0);
+        glVertex3f(  0, 100,   0);
+        glVertex3f(  0, 100,-100);
+        glVertex3f(100, 100,-100);
+        glVertex3f(100, 100,   0);
+        glEnd();
 
         window.display();
     }

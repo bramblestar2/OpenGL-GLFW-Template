@@ -12,6 +12,7 @@ public:
 	Window3D();
 	~Window3D();
 
+	void setView(View* _View) = delete;
 	void setCamera(Camera* _Camera);
 	void display() override;
 private:

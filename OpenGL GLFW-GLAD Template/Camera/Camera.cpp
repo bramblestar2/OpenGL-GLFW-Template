@@ -3,7 +3,8 @@
 Camera::Camera(const Vec2f _Size, const Vec3f _Cam_Position)
 {
 	cameraSize = _Size;
-	cameraSpeed = 0.5f;
+	setSpeed(0.5f);
+	setViewDistance(1, 500);
 
 	yaw = 0;
 	pitch = 0;
@@ -17,6 +18,9 @@ Camera::Camera(const Vec2f _Size, const Vec3f _Cam_Position)
 	cameraFront = glm::vec3(0.0f, 0.0f, -1.0f);
 	cameraUp = glm::vec3(0.0f, 1.0f, 0.0f);
 
+	setDeltaTime(1);
+
+	updateDirection();
 	updateView();
 }
 
@@ -24,9 +28,45 @@ Camera::~Camera()
 {
 }
 
-void Camera::setViewDistance(const Vec2f _View_Distance)
+glm::vec3 Camera::getCameraPosition() const
 {
-	viewDistance = _View_Distance;
+	return cameraPos;
+}
+
+float Camera::getSpeed() const
+{
+	return cameraSpeed;
+}
+
+glm::vec3 Camera::getPosition() const
+{
+	return cameraPos;
+}
+
+float Camera::getYaw() const
+{
+	return yaw;
+}
+
+float Camera::getPitch() const
+{
+	return pitch;
+}
+
+void Camera::enableDepth()
+{
+	glEnable(GL_DEPTH_TEST);
+	glDepthMask(GL_TRUE);
+}
+
+void Camera::setSpeed(const float _Speed)
+{
+	cameraSpeed = _Speed;
+}
+
+void Camera::setViewDistance(const float _Near, const float _Far)
+{
+	viewDistance = Vec2f(_Near, _Far);
 }
 
 void Camera::setPosition(const glm::vec3 _Position)
@@ -40,9 +80,65 @@ void Camera::setSize(const Vec2f _Size)
 	updateView();
 }
 
+void Camera::setDeltaTime(const float _DT)
+{
+	dt = _DT;
+}
+
+void Camera::setYaw(const float _Yaw)
+{
+	yaw = _Yaw;
+	updateDirection();
+}
+
+void Camera::setPitch(const float _Pitch)
+{
+	pitch = _Pitch;
+	updateDirection();
+}
+
+void Camera::addPitch(const float _Pitch)
+{
+	pitch += _Pitch;
+	updateDirection();
+}
+
+void Camera::addYaw(const float _Yaw)
+{
+	yaw += _Yaw;
+	updateDirection();
+}
+
+void Camera::move(const Camera_Movement _Movement)
+{
+	float camSpeed = cameraSpeed * dt;
+
+	switch (_Movement)
+	{
+	case Camera_Movement::FORWARD:
+		cameraPos += camSpeed * cameraFront;
+		break;
+	case Camera_Movement::BACKWARD:
+		cameraPos -= camSpeed * cameraFront;
+		break;
+	case Camera_Movement::LEFT:
+		cameraPos -= glm::normalize(glm::cross(cameraFront, cameraUp)) * camSpeed;
+		break;
+	case Camera_Movement::RIGHT:
+		cameraPos += glm::normalize(glm::cross(cameraFront, cameraUp)) * camSpeed;
+		break;
+	case Camera_Movement::UP:
+		cameraPos.y += camSpeed;
+		break;
+	case Camera_Movement::DOWN:
+		cameraPos.y -= camSpeed;
+		break;
+	}
+}
+
 void Camera::move(const glm::vec3 _Direction)
 {
-	cameraPos += _Direction;
+	cameraPos += _Direction * dt;
 }
 
 void Camera::update()
@@ -69,5 +165,5 @@ void Camera::updateView()
 	glMatrixMode(GL_PROJECTION);
 	glLoadIdentity();
 	float ratio = (float)cameraSize.x / (float)cameraSize.y;
-	glFrustum(-ratio, ratio, -1.f, 1.f, 1.f, 500.f);
+	glFrustum(-ratio, ratio, -1.f, 1.f, viewDistance.x, viewDistance.y);
 }
