@@ -2,7 +2,7 @@
 #include "Window2D.h"
 #include "../Camera/Camera.h"
 
-class Window3D : Window2D
+class Window3D : public Window2D
 {
 public:
 	Window3D(const unsigned int _Width,

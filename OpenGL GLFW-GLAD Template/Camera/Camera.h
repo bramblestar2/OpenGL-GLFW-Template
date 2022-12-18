@@ -19,27 +19,16 @@ public:
 	Camera(const Vec2f _Size = Vec2f(), const Vec3f _Cam_Position = Vec3f());
 	~Camera();
 
-	void setClearDepth(const float _Depth);
-	void enableDepth();
-
-	glm::vec3 getCameraPosition() const { return cameraPos; }
-
-	void setSize(const float _X, const float _Y);
+	void setViewDistance(const Vec2f _View_Distance);
+	void setPosition(const glm::vec3 _Position);
 	void setSize(const Vec2f _Size);
 
-	void setViewDistance(const float _Near, const float _Far);
-	void setCameraSpeed(const float _Speed) { cameraSpeed = _Speed; }
-	void setCameraPosition(const Vec3f _Position);
+	void move(const glm::vec3 _Direction);
 
-	void move(const float _X, const float _Y, const float _Z) { move(Vec3f(_X, _Y, _Z)); }
-	void move(const Vec3f _Direction);
-
-	void update(const double _DT);
-	void updateMovement(const double _DT);
-
+	void update(); //Updates OpenGL View matrix
 private:
 	void updateDirection();
-	void updateView();
+	void updateView(); //Updates OpenGL glFustrum
 
 	Vec2f cameraSize;
 	//X > Near
@@ -57,5 +46,9 @@ private:
 	glm::vec3 cameraUp;
 
 	float cameraSpeed;
+	//
+
+	//
+	float yaw, pitch;
 	//
 };

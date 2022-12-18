@@ -26,8 +26,8 @@ void Window3D::setCamera(Camera* _Camera)
 
 void Window3D::display()
 {
-	//if (camera != nullptr)
-	//	camera->update();
+	if (camera != nullptr)
+		camera->update();
 
 	glfwSwapBuffers(window);
 }
