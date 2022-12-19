@@ -83,8 +83,8 @@ void example2D()
 
 void example3D()
 {
-    Window3D window(600, 500, "Window", true);
-    window.setDecorated(false);
+    Window3D window(600, 500, "Window");
+    //window.setDecorated(false);
     glfwSwapInterval(1);
 
     Events event;
@@ -115,12 +115,15 @@ void example3D()
     glShadeModel(GL_SMOOTH);
     glLightfv(GL_LIGHT0, GL_POSITION, light0_position);
     glLightfv(GL_LIGHT0, GL_DIFFUSE, light0_diffuse);
-    //glLightf(GL_LIGHT0, GL_SPOT_CUTOFF, 45);
     glEnable(GL_LIGHTING);
     glEnable(GL_LIGHT0);
     glColorMaterial(GL_FRONT, GL_DIFFUSE);
     glEnable(GL_COLOR_MATERIAL);
     glEnable(GL_NORMALIZE);
+
+    float heightOfCube = 0.1f;
+    float adjustHeight = 10.f;
+
 
     while (window.isOpen())
     {
@@ -174,6 +177,7 @@ void example3D()
             }
         }
 
+        /* CAMERA MOVEMENT */
         if (glfwGetKey(window.getWindow(), GLFW_KEY_W))
             c1.move(Camera_Movement::FORWARD);
         else if (glfwGetKey(window.getWindow(), GLFW_KEY_S))
@@ -186,6 +190,15 @@ void example3D()
             c1.move(Camera_Movement::UP);
         else if (glfwGetKey(window.getWindow(), GLFW_KEY_LEFT_SHIFT))
             c1.move(Camera_Movement::DOWN);
+
+        if (glfwGetKey(window.getWindow(), GLFW_KEY_LEFT))
+            heightOfCube -= 0.1f;
+        else if (glfwGetKey(window.getWindow(), GLFW_KEY_RIGHT))
+            heightOfCube += 0.1f;
+        if (glfwGetKey(window.getWindow(), GLFW_KEY_UP))
+            adjustHeight += 1.f;
+        else if (glfwGetKey(window.getWindow(), GLFW_KEY_DOWN))
+            adjustHeight -= 1.f;
 
         //Mouse
         if (glfwGetMouseButton(window.getWindow(), GLFW_MOUSE_BUTTON_LEFT) == GLFW_PRESS)
@@ -217,18 +230,12 @@ void example3D()
         for (int x = 0; x < 20; x++)
             for (int z = 0; z < 20; z++)
             {
-                drawCube(10, 10, 10, x * 11, sin(glfwGetTime() + (float)(x + z)/ 3) * 10, z * 11,
-                         fmod(1 / (float)10 * (x + z), 1) + 0.1, 
-                         fmod(1 / (float)10 * (z * x), 1) + 0.1, 
-                         fmod(1 / (float)10 * (z), 1) + 0.1, 
+                drawCube(10, 10, 10, x * 10, sin(heightOfCube + (float)(x + z)/ 3) * adjustHeight, z * 10,
+                         fmod(1 / (float)20 * (x), 1) + 0.1, 
+                         fmod(sin(heightOfCube + (float)(x + z) / 3), 1) + 0.1,
+                         fmod(1 / (float)20 * (z), 1) + 0.1, 
                          1);
             }
-
-        //drawCube(10, 10, 10, 0, 0, 0, 1, 1, 1 ,1);
-        //drawCube(10, 10, 20, 11, 0, 0, 1, 1, 0 ,1);
-        //drawCube(10, 10, 30, 22, 0, 0, 1, 1, .5 ,1);
-        //drawCube(10, 10, 40, 33, 0, 0, 1, 0, 1 ,1);
-        //drawCube(44, 10, 10, 0, 60, 0, 0, 1, 1 ,1);
 
         window.display();
     }
@@ -242,10 +249,10 @@ void drawCube(const float width, const float length, const float height,
     {
         //Position                                  Color           Normals
         //Front           
-         xpos,ypos,zpos,                            r, g, b, a,     0,0,-1,
-         width+xpos,ypos,zpos,                      r, g, b, a,     0,0,-1,
-         width+xpos,height+ypos,zpos,               r, g, b, a,     0,0,-1,
-         xpos,height+ypos,zpos,                     r, g, b, a,     0,0,-1,
+         xpos,ypos,zpos,                            r, g, b, a,     0,0,-1, //Bottom left
+         width+xpos,ypos,zpos,                      r, g, b, a,     0,0,-1, //Bottom right
+         width+xpos,height+ypos,zpos,               r, g, b, a,     0,0,-1, //Top right
+         xpos,height+ypos,zpos,                     r, g, b, a,     0,0,-1, //Top left
         //Back                                                      
          xpos,   ypos, zpos+length,                 r, g, b, a,     0,0,1,
          width+xpos,   ypos, zpos+length,           r, g, b, a,     0,0,1,
@@ -272,8 +279,7 @@ void drawCube(const float width, const float length, const float height,
          width+xpos,  height+ypos, length+zpos,     r, g, b, a,     0,1,0,
          width+xpos,  height+ypos,   zpos,          r, g, b, a,     0,1,0,
     };
-
-    // Enable position and color vertex components
+    
     glEnableClientState(GL_VERTEX_ARRAY);
     glEnableClientState(GL_COLOR_ARRAY);
     glEnableClientState(GL_NORMAL_ARRAY);
@@ -282,10 +288,8 @@ void drawCube(const float width, const float length, const float height,
     glColorPointer(4, GL_FLOAT, 10 * sizeof(GLfloat), cube + 3);
     glNormalPointer(GL_FLOAT, 10 * sizeof(GLfloat), cube + 7);
 
-    // Disable normal and texture coordinates vertex components
     //glDisableClientState(GL_NORMAL_ARRAY);
     glDisableClientState(GL_TEXTURE_COORD_ARRAY);
-
 
     glDrawArrays(GL_QUADS, 0, 24);
 }
