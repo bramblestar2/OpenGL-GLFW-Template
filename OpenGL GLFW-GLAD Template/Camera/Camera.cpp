@@ -162,7 +162,7 @@ void Camera::move(const Camera_Movement _Movement)
 
 void Camera::move(const glm::vec3 _Direction)
 {
-	cameraPos += _Direction * dt;
+	cameraPos += _Direction;
 }
 
 void Camera::update()

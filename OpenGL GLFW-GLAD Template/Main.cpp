@@ -9,7 +9,8 @@
 void example2D();
 void example3D();
 void drawCube(const float width, const float length, const float height,
-              const float xpos, const float ypos, const float zpos);
+              const float xpos, const float ypos, const float zpos,
+              const float r, const float g, const float b, const float a);
 
 int main()
 {
@@ -82,16 +83,22 @@ void example2D()
 
 void example3D()
 {
-    Window3D window(300, 300, "Window");
+    Window3D window(600, 500, "Window", true);
+    window.setDecorated(false);
     glfwSwapInterval(1);
 
     Events event;
     event.setEventWindow(window.getWindow());
 
-    Camera c1(Vec2f(300,300));
+    int windowWidth, windowHeight;
+    window.getSize(&windowWidth, &windowHeight);
+    Camera c1(Vec2f(windowWidth, windowHeight));
     c1.enableDepth();
     c1.setViewDistance(1, 500);
     c1.setPosition(glm::vec3(-30,0,5));
+    float camSpeed = 1;
+    c1.setSpeed(camSpeed);
+
     window.setCamera(&c1);
 
     //Mouse movement for camera
@@ -100,9 +107,29 @@ void example3D()
     double mouse_lastx = m.getPosition().x;
     double mouse_lasty = m.getPosition().y;
 
+    double last_frame = glfwGetTime();
+
+    GLfloat light0_diffuse[] = { 1.0, 1.0, 1.0, 1.0 };
+
+    GLfloat light0_position[] = { 0.0, 0.0, 1.0, 0.0 };
+    glShadeModel(GL_SMOOTH);
+    glLightfv(GL_LIGHT0, GL_POSITION, light0_position);
+    glLightfv(GL_LIGHT0, GL_DIFFUSE, light0_diffuse);
+    //glLightf(GL_LIGHT0, GL_SPOT_CUTOFF, 45);
+    glEnable(GL_LIGHTING);
+    glEnable(GL_LIGHT0);
+    glColorMaterial(GL_FRONT, GL_DIFFUSE);
+    glEnable(GL_COLOR_MATERIAL);
+    glEnable(GL_NORMALIZE);
 
     while (window.isOpen())
     {
+        //Set delta time
+        double dt = glfwGetTime() - last_frame;
+        last_frame = glfwGetTime();
+
+        c1.setDeltaTime(dt * 100);
+
         //EVENTS
         while (event.pollEvents())
         {
@@ -115,6 +142,24 @@ void example3D()
                     {
                     case GLFW_KEY_ESCAPE:
                         window.close();
+                        break;
+                    case GLFW_KEY_LEFT_CONTROL:
+                        c1.setSpeed(camSpeed * 2);
+                        break;
+                    case GLFW_KEY_TAB:
+                        c1.setSpeed(camSpeed / 2);
+                        break;
+                    }
+                }
+                else if (event.event().keys.action == GLFW_RELEASE)
+                {
+                    switch (event.event().keys.key)
+                    {
+                    case GLFW_KEY_LEFT_CONTROL:
+                        c1.setSpeed(camSpeed);
+                        break;
+                    case GLFW_KEY_TAB:
+                        c1.setSpeed(camSpeed);
                         break;
                     }
                 }
@@ -168,62 +213,77 @@ void example3D()
 
         window.clear(0, 0, 0, 0);
 
-        drawCube(10, 10, 10, 0, 0, 0);
-        drawCube(10, 10, 20, 11, 0, 0);
-        drawCube(10, 10, 30, 22, 0, 0);
-        drawCube(10, 10, 40, 33, 0, 0);
+
+        for (int x = 0; x < 20; x++)
+            for (int z = 0; z < 20; z++)
+            {
+                drawCube(10, 10, 10, x * 11, sin(glfwGetTime() + (float)(x + z)/ 3) * 10, z * 11,
+                         fmod(1 / (float)10 * (x + z), 1) + 0.1, 
+                         fmod(1 / (float)10 * (z * x), 1) + 0.1, 
+                         fmod(1 / (float)10 * (z), 1) + 0.1, 
+                         1);
+            }
+
+        //drawCube(10, 10, 10, 0, 0, 0, 1, 1, 1 ,1);
+        //drawCube(10, 10, 20, 11, 0, 0, 1, 1, 0 ,1);
+        //drawCube(10, 10, 30, 22, 0, 0, 1, 1, .5 ,1);
+        //drawCube(10, 10, 40, 33, 0, 0, 1, 0, 1 ,1);
+        //drawCube(44, 10, 10, 0, 60, 0, 0, 1, 1 ,1);
 
         window.display();
     }
 }
 
 void drawCube(const float width, const float length, const float height, 
-              const float xpos, const float ypos, const float zpos)
+              const float xpos, const float ypos, const float zpos,
+              const float r, const float g, const float b, const float a)
 {
     GLfloat cube[] =
     {
-        //Position                  Color
+        //Position                                  Color           Normals
         //Front           
-         xpos,ypos,zpos,              1, 1, 1, 1,
-         width+xpos,ypos,zpos,        1, 1, 1, 1,
-         width+xpos,height+ypos,zpos, 1, 1, 1, 1,
-         xpos,height+ypos,zpos,       1, 1, 1, 1,
-        //back            
-         xpos,   ypos, zpos+length,              1, 0, 1, 1,
-         width+xpos,   ypos, zpos+length,        1, 0, 1, 1,
-         width+xpos,  height+ypos, zpos+length,  1, 0, 1, 1,
-         xpos,  height+ypos, zpos+length,        1, 0, 1, 1,
-        //Left            
-         xpos,   ypos,   zpos,                  1, 0, 0, 1,
-         xpos,   ypos, length+zpos,             1, 0, 0, 1,
-         xpos,  height+ypos, length+zpos,       1, 0, 0, 1,
-         xpos,  height+ypos,   zpos,            1, 0, 0, 1,
-        //Right           
-         width+xpos,   ypos,   zpos,             0, 0, 1, 1,
-         width+xpos,   ypos, length+zpos,        0, 0, 1, 1,
-         width+xpos,  height+ypos, length+zpos,  0, 0, 1, 1,
-         width+xpos,  height+ypos,   zpos,       0, 0, 1, 1,
-        //Bottom          
-         xpos,   ypos,   zpos,              0, 1, 1, 1,
-         xpos,   ypos, length+zpos,         0, 1, 1, 1,
-         width+xpos,   ypos, length+zpos,    0, 1, 1, 1,
-         width+xpos,   ypos,   zpos,         0, 1, 1, 1,
-        //Top             
-         xpos,  height+ypos,   zpos,           0, 1, 0, 1,
-         xpos,  height+ypos, length+zpos,      0, 1, 0, 1,
-         width+xpos,  height+ypos, length+zpos, 0, 1, 0, 1,
-         width+xpos,  height+ypos,   zpos,      0, 1, 0, 1,
+         xpos,ypos,zpos,                            r, g, b, a,     0,0,-1,
+         width+xpos,ypos,zpos,                      r, g, b, a,     0,0,-1,
+         width+xpos,height+ypos,zpos,               r, g, b, a,     0,0,-1,
+         xpos,height+ypos,zpos,                     r, g, b, a,     0,0,-1,
+        //Back                                                      
+         xpos,   ypos, zpos+length,                 r, g, b, a,     0,0,1,
+         width+xpos,   ypos, zpos+length,           r, g, b, a,     0,0,1,
+         width+xpos,  height+ypos, zpos+length,     r, g, b, a,     0,0,1,
+         xpos,  height+ypos, zpos+length,           r, g, b, a,     0,0,1,
+        //Left                                                      
+         xpos,   ypos,   zpos,                      r, g, b, a,     -1,0,0,
+         xpos,   ypos, length+zpos,                 r, g, b, a,     -1,0,0,
+         xpos,  height+ypos, length+zpos,           r, g, b, a,     -1,0,0,
+         xpos,  height+ypos,   zpos,                r, g, b, a,     -1,0,0,
+        //Right                                                     
+         width+xpos,   ypos,   zpos,                r, g, b, a,     1,0,0,
+         width+xpos,   ypos, length+zpos,           r, g, b, a,     1,0,0,
+         width+xpos,  height+ypos, length+zpos,     r, g, b, a,     1,0,0,
+         width+xpos,  height+ypos,   zpos,          r, g, b, a,     1,0,0,
+        //Bottom                                                    
+         xpos,   ypos,   zpos,                      r, g, b, a,     0,-1,0,
+         xpos,   ypos, length+zpos,                 r, g, b, a,     0,-1,0,
+         width+xpos,   ypos, length+zpos,           r, g, b, a,     0,-1,0,
+         width+xpos,   ypos,   zpos,                r, g, b, a,     0,-1,0,
+        //Top                                                       
+         xpos,  height+ypos,   zpos,                r, g, b, a,     0,1,0,
+         xpos,  height+ypos, length+zpos,           r, g, b, a,     0,1,0,
+         width+xpos,  height+ypos, length+zpos,     r, g, b, a,     0,1,0,
+         width+xpos,  height+ypos,   zpos,          r, g, b, a,     0,1,0,
     };
 
     // Enable position and color vertex components
     glEnableClientState(GL_VERTEX_ARRAY);
     glEnableClientState(GL_COLOR_ARRAY);
+    glEnableClientState(GL_NORMAL_ARRAY);
 
-    glVertexPointer(3, GL_FLOAT, 7 * sizeof(GLfloat), cube);
-    glColorPointer(4, GL_FLOAT, 7 * sizeof(GLfloat), cube + 3);
+    glVertexPointer(3, GL_FLOAT, 10 * sizeof(GLfloat), cube);
+    glColorPointer(4, GL_FLOAT, 10 * sizeof(GLfloat), cube + 3);
+    glNormalPointer(GL_FLOAT, 10 * sizeof(GLfloat), cube + 7);
 
     // Disable normal and texture coordinates vertex components
-    glDisableClientState(GL_NORMAL_ARRAY);
+    //glDisableClientState(GL_NORMAL_ARRAY);
     glDisableClientState(GL_TEXTURE_COORD_ARRAY);
 
 
