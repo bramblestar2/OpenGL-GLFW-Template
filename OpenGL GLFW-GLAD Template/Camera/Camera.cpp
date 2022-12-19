@@ -1,4 +1,5 @@
 #include "Camera.h"
+#include <iostream>
 
 Camera::Camera(const Vec2f _Size, const Vec3f _Cam_Position)
 {
@@ -8,7 +9,10 @@ Camera::Camera(const Vec2f _Size, const Vec3f _Cam_Position)
 
 	yaw = 0;
 	pitch = 0;
+	fov = 45;
 
+	model = glm::mat4(1.f);
+	proj = glm::mat4(1.f);
 	view = glm::mat4(1.f);
 
 	cameraPos = glm::vec3(_Cam_Position.x, _Cam_Position.y, _Cam_Position.z);
@@ -51,6 +55,16 @@ float Camera::getYaw() const
 float Camera::getPitch() const
 {
 	return pitch;
+}
+
+glm::mat4* Camera::getViewPtr()
+{
+	return &view;
+}
+
+float Camera::getFOV() const
+{
+	return fov;
 }
 
 void Camera::enableDepth()
@@ -97,6 +111,11 @@ void Camera::setPitch(const float _Pitch)
 	updateDirection();
 }
 
+void Camera::setFOV(float _FOV)
+{
+	fov = _FOV;
+}
+
 void Camera::addPitch(const float _Pitch)
 {
 	pitch += _Pitch;
@@ -116,10 +135,15 @@ void Camera::move(const Camera_Movement _Movement)
 	switch (_Movement)
 	{
 	case Camera_Movement::FORWARD:
-		cameraPos += camSpeed * cameraFront;
+		cameraPos.x += camSpeed * cos(glm::radians(yaw));
+		cameraPos.z += camSpeed * sin(glm::radians(yaw));
+		//cameraPos += camSpeed * cameraFront;
+
 		break;
 	case Camera_Movement::BACKWARD:
-		cameraPos -= camSpeed * cameraFront;
+		cameraPos.x -= camSpeed * cos(glm::radians(yaw));
+		cameraPos.z -= camSpeed * sin(glm::radians(yaw));
+		//cameraPos -= camSpeed * cameraFront;
 		break;
 	case Camera_Movement::LEFT:
 		cameraPos -= glm::normalize(glm::cross(cameraFront, cameraUp)) * camSpeed;

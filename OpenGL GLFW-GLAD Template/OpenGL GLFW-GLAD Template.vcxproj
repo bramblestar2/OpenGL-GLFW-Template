@@ -157,6 +157,7 @@
     <ClCompile Include="Events\EventHandler.cpp" />
     <ClCompile Include="Events\Events.cpp" />
     <ClCompile Include="glad.c" />
+    <ClCompile Include="Joystick.cpp" />
     <ClCompile Include="Main.cpp" />
     <ClCompile Include="View\View.cpp" />
     <ClCompile Include="Windows\Window2D.cpp" />
@@ -170,9 +171,14 @@
     <ClInclude Include="Essentials\Vec3\Vec3.h" />
     <ClInclude Include="Events\EventHandler.h" />
     <ClInclude Include="Events\Events.h" />
+    <ClInclude Include="Joystick.h" />
     <ClInclude Include="View\View.h" />
     <ClInclude Include="Windows\Window2D.h" />
     <ClInclude Include="Windows\Window3D.h" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="basic.fs" />
+    <None Include="basic.vs" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

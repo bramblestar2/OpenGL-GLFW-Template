@@ -35,3 +35,8 @@ Vec2d Mouse::getPosition(GLFWwindow* _Window)
 	glfwGetCursorPos(_Window, &pos.x, &pos.y);
 	return pos;
 }
+
+bool Mouse::isButtonPressed(int _Button)
+{
+	return glfwGetMouseButton(glfwGetCurrentContext(), _Button);
+}

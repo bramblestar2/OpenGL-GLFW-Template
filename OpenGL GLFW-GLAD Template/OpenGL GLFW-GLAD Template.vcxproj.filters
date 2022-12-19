@@ -31,6 +31,9 @@
     <Filter Include="Header Files\Essentials">
       <UniqueIdentifier>{ce2a4ea3-8c37-49bc-9eba-e2b329dbdebb}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Resource Files\Shader">
+      <UniqueIdentifier>{a2cfc5e6-82ad-4324-acb2-2beb2e6f976c}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Main.cpp">
@@ -66,6 +69,12 @@
     <ClCompile Include="View\View.cpp">
       <Filter>Source Files\Essentials</Filter>
     </ClCompile>
+    <ClCompile Include="Clock.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="Joystick.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Events\EventHandler.h">
@@ -95,5 +104,19 @@
     <ClInclude Include="View\View.h">
       <Filter>Header Files\Essentials</Filter>
     </ClInclude>
+    <ClInclude Include="Clock.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="Joystick.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="basic.vs">
+      <Filter>Resource Files\Shader</Filter>
+    </None>
+    <None Include="basic.fs">
+      <Filter>Resource Files\Shader</Filter>
+    </None>
   </ItemGroup>
 </Project>

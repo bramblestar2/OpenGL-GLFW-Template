@@ -24,6 +24,8 @@ public:
 	glm::vec3 getPosition() const;
 	float getYaw() const;
 	float getPitch() const;
+	glm::mat4* getViewPtr();
+	float getFOV() const;
 
 	void enableDepth();
 	void setSpeed(const float _Speed);
@@ -33,6 +35,7 @@ public:
 	void setDeltaTime(const float _DT);
 	void setYaw(const float _Yaw);
 	void setPitch(const float _Pitch);
+	void setFOV(float _FOV);
 
 	void addPitch(const float _Pitch);
 	void addYaw(const float _Yaw);
@@ -53,6 +56,8 @@ private:
 	Vec2f viewDistance;
 
 	//Camera
+	glm::mat4 proj;
+	glm::mat4 model;
 	glm::mat4 view;
 
 	glm::vec3 cameraPos;
@@ -62,6 +67,7 @@ private:
 	glm::vec3 cameraFront;
 	glm::vec3 cameraUp;
 
+	float fov;
 	//
 
 	//

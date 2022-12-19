@@ -9,12 +9,13 @@ class Mouse
 {
 public:
 	Mouse();
-	
-	void setPosition(const Vec2d _Position);
-	void setPosition(const Vec2d _Position, GLFWwindow* window);
 
-	Vec2d getPosition();
-	Vec2d getPosition(GLFWwindow* _Window);
+	static void setPosition(const Vec2d _Position);
+	static void setPosition(const Vec2d _Position, GLFWwindow* window);
+
+	static Vec2d getPosition();
+	static Vec2d getPosition(GLFWwindow* _Window);
+	static bool isButtonPressed(int _Button);
 private:
 
 };

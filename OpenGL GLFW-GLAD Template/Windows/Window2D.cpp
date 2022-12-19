@@ -13,10 +13,14 @@ Window2D::Window2D(const unsigned int _Width,
     if (!glfwInit())
         return;
 
-    setContext(0,0,3,3);
+    //glfwWindowHint(GLFW_DEPTH_BITS, 0);
+    //glfwWindowHint(GLFW_STENCIL_BITS, 0);
+    //glfwWindowHint(GLFW_CONTEXT_VERSION_MAJOR, 3);
+    //glfwWindowHint(GLFW_CONTEXT_VERSION_MINOR, 3);
     glfwWindowHint(GLFW_TRANSPARENT_FRAMEBUFFER, _IsTransparent);
 
     window = glfwCreateWindow(_Width, _Height, _Title.c_str(), nullptr, nullptr);
+    setContext(0,0,3,3);
 
     //Set position of window to the center of screen
     int count;
