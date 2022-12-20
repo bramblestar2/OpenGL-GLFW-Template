@@ -149,9 +149,9 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
-    <ClCompile Include="..\..\OpenGL-Particle-Sim\OpenGL GLFW-GLAD Template\Essentials\ContextSettings\ContextSettings.cpp" />
     <ClCompile Include="Camera\Camera.cpp" />
     <ClCompile Include="Clock.cpp" />
+    <ClCompile Include="Essentials\ContextSettings\ContextSettings.cpp" />
     <ClCompile Include="Essentials\Mouse\Mouse.cpp" />
     <ClCompile Include="Essentials\Vec2\Vec2.cpp" />
     <ClCompile Include="Essentials\Vec3\Vec3.cpp" />
@@ -165,9 +165,9 @@
     <ClCompile Include="Windows\Window3D.cpp" />
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="..\..\OpenGL-Particle-Sim\OpenGL GLFW-GLAD Template\Essentials\ContextSettings\ContextSettings.h" />
     <ClInclude Include="Camera\Camera.h" />
     <ClInclude Include="Clock.h" />
+    <ClInclude Include="Essentials\ContextSettings\ContextSettings.h" />
     <ClInclude Include="Essentials\Mouse\Mouse.h" />
     <ClInclude Include="Essentials\Vec2\Vec2.h" />
     <ClInclude Include="Essentials\Vec3\Vec3.h" />
