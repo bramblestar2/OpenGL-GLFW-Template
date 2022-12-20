@@ -149,6 +149,7 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClCompile Include="..\..\OpenGL-Particle-Sim\OpenGL GLFW-GLAD Template\Essentials\ContextSettings\ContextSettings.cpp" />
     <ClCompile Include="Camera\Camera.cpp" />
     <ClCompile Include="Clock.cpp" />
     <ClCompile Include="Essentials\Mouse\Mouse.cpp" />
@@ -164,6 +165,7 @@
     <ClCompile Include="Windows\Window3D.cpp" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="..\..\OpenGL-Particle-Sim\OpenGL GLFW-GLAD Template\Essentials\ContextSettings\ContextSettings.h" />
     <ClInclude Include="Camera\Camera.h" />
     <ClInclude Include="Clock.h" />
     <ClInclude Include="Essentials\Mouse\Mouse.h" />

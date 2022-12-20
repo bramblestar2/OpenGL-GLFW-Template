@@ -5,6 +5,7 @@
 #include <string>
 #include "../View/View.h"
 #include "../Events/EventHandler.h"
+#include "../Essentials/ContextSettings/ContextSettings.h"
 
 class Window2D
 {
@@ -12,7 +13,7 @@ public:
 	Window2D(const unsigned int _Width, 
 			 const unsigned int _Height, 
 			 const std::string _Title,
-			 const bool _IsTransparent = GLFW_FALSE);
+			 const ContextSettings _Settings = ContextSettings());
 	Window2D();
 	virtual ~Window2D();
 

@@ -8,7 +8,7 @@ public:
 	Window3D(const unsigned int _Width,
 		const unsigned int _Height,
 		const std::string _Title,
-		const bool _IsTransparent = GLFW_FALSE);
+		const ContextSettings _Settings = ContextSettings(24, 8));
 	Window3D();
 	~Window3D();
 

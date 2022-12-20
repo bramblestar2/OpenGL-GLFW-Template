@@ -31,11 +31,13 @@ int main()
 */
 void example2D()
 {
+    ContextSettings settings;
+    settings.decorated = true;
+    settings.transparent = true;
+
     //Create's a window with 300x300 size, titled "Window"
     //There is a optional parameter for a transparent window
-    Window2D window(300, 300, "Window", true);
-    //Set decorated changes whether there is a titlebar or not
-    window.setDecorated(false);
+    Window2D window(300, 300, "Window", settings);
     glfwSwapInterval(1);
 
     //Create a 2D Viewport that has a size of 300x300
@@ -104,11 +106,14 @@ void example2D()
 */
 void example3D()
 {
+    ContextSettings settings(24, 8, 0, 1, 2);
+    settings.transparent = true;
+    settings.decorated = false;
+
     //Create a 3D window with the size of 600x500 thats titled "Window"
     //There is a optional parameter for a transparent window
-    Window3D window(600, 500, "Window", true);
+    Window3D window(600, 500, "Window", settings);
     //Set decorated changes whether there is a titlebar or not
-    window.setDecorated(false);
     glfwSwapInterval(1);
 
     int windowWidth, windowHeight;
@@ -157,7 +162,6 @@ void example3D()
     float cubeAmplitude = 10.f;
     float cubeFrequency = 3.f;
     /* Fun stuff */
-
 
     while (window.isOpen())
     {
@@ -275,15 +279,24 @@ void example3D()
         window.clear(0, 0, 0, 0);
 
         /* Draws the cubes to window */
-        for (int x = 0; x < 20; x++)
-            for (int z = 0; z < 20; z++)
+        for (int x = 0; x < 40; x++)
+            for (int z = 0; z < 40; z++)
             {
-                drawCube(5, 5, 5, x * 5, sin(glfwGetTime() + (float)(x + z) / cubeFrequency)* cubeAmplitude, z * 5,
-                         fmod(1 / (float)20 * (x), 1) + 0.1, 
-                         fmod(sin(glfwGetTime() + (float)(x + z) / cubeFrequency), 1) + 0.1,
-                         fmod(1 / (float)20 * (z), 1) + 0.1, 
+                float y = cos(glfwGetTime() + (float)(x) / cubeFrequency) *
+                          sin(glfwGetTime() + (float)(z) / cubeFrequency) * cubeAmplitude;
+                drawCube(5, 5, 5, x * 5, y, z * 5,
+                         fmod(1 / (float)40 * (x), 1) + 0.1, 
+                         fmod(1 / (cubeAmplitude == 0 ? 1 : cubeAmplitude) * y, 1) + 0.1,
+                         fmod(1 / (float)40 * (z), 1) + 0.1, 
                          1);
             }
+
+        float xpos, ypos, zpos;
+        xpos = c1.getPosition().x - 0 + (c1.getCameraDirection().x * 20);
+        ypos = c1.getPosition().y - 0 + (c1.getCameraDirection().y * 20);
+        zpos = c1.getPosition().z - 0 + (c1.getCameraDirection().z * 20);
+        
+        drawCube(1, 1, 1, xpos, ypos, zpos, 1, 1, 1, 1);
 
         //Displays drawn elements to the window
         window.display();

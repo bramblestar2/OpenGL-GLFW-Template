@@ -4,7 +4,7 @@
 Window2D::Window2D(const unsigned int _Width, 
                    const unsigned int _Height, 
                    const std::string _Title,
-                   const bool _IsTransparent)
+                   const ContextSettings _Settings)
 {
     view = nullptr;
     window = nullptr;
@@ -13,11 +13,14 @@ Window2D::Window2D(const unsigned int _Width,
     if (!glfwInit())
         return;
 
-    //glfwWindowHint(GLFW_DEPTH_BITS, 0);
-    //glfwWindowHint(GLFW_STENCIL_BITS, 0);
-    //glfwWindowHint(GLFW_CONTEXT_VERSION_MAJOR, 3);
-    //glfwWindowHint(GLFW_CONTEXT_VERSION_MINOR, 3);
-    glfwWindowHint(GLFW_TRANSPARENT_FRAMEBUFFER, _IsTransparent);
+    glfwWindowHint(GLFW_DEPTH_BITS, _Settings.depthBits);
+    glfwWindowHint(GLFW_STENCIL_BITS, _Settings.stencilBits);
+    glfwWindowHint(GLFW_CONTEXT_VERSION_MAJOR, _Settings.majorVersion);
+    glfwWindowHint(GLFW_CONTEXT_VERSION_MINOR, _Settings.minorVersion);
+    glfwWindowHint(GLFW_TRANSPARENT_FRAMEBUFFER, _Settings.transparent);
+    glfwWindowHint(GLFW_DECORATED, _Settings.decorated);
+    glfwWindowHint(GLFW_RESIZABLE, _Settings.resizable);
+    glfwWindowHint(GLFW_SRGB_CAPABLE, _Settings.sRGB);
 
     window = glfwCreateWindow(_Width, _Height, _Title.c_str(), nullptr, nullptr);
     setContext(0,0,3,3);

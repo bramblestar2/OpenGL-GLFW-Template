@@ -19,6 +19,7 @@ public:
 	Camera(const Vec2f _Size = Vec2f(), const Vec3f _Cam_Position = Vec3f());
 	~Camera();
 
+	glm::vec3 getCameraDirection() const;
 	glm::vec3 getCameraPosition() const;
 	float getSpeed() const;
 	glm::vec3 getPosition() const;
