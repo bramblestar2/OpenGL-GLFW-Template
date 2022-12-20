@@ -4,6 +4,7 @@
 #include <GL/glew.h>
 #include <string>
 #include "../View/View.h"
+#include "../Events/EventHandler.h"
 
 class Window2D
 {
@@ -45,8 +46,11 @@ public:
 	virtual void display();
 	void close();
 
+	bool poll_events(Event& event);
+
 protected:
 	GLFWwindow* window;
 	View* view;
+	EventHandler handler;
 };
 

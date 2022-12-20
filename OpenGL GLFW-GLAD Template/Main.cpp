@@ -38,12 +38,6 @@ void example2D()
     window.setDecorated(false);
     glfwSwapInterval(1);
 
-    //Handles all of the events from glfw
-    Events event;
-    //Sets the window that we will be getting the
-    //events from
-    event.setEventWindow(window.getWindow());
-
     //Create a 2D Viewport that has a size of 300x300
     //There is an optional parameter for the position of the view
     View v1(Vec2f(300, 300));
@@ -56,14 +50,15 @@ void example2D()
     while (window.isOpen())
     {
         //EVENTS
-        while (event.pollEvents())
+        Event event;
+        while (window.poll_events(event))
         {
-            switch (event.type())
+            switch (event.type)
             {
-            case EventTypes::Key:
-                if (event.event().keys.action == GLFW_PRESS)
+            case Event::EventType::KEY:
+                if (event.keys.action == GLFW_PRESS)
                 {
-                    switch (event.event().keys.key)
+                    switch (event.keys.key)
                     {
                     case GLFW_KEY_ESCAPE:
                         window.close();
@@ -115,12 +110,6 @@ void example3D()
     //Set decorated changes whether there is a titlebar or not
     window.setDecorated(false);
     glfwSwapInterval(1);
-
-    //Handles all of the events from glfw
-    Events event;
-    //Sets the window that we will be getting the
-    //events from
-    event.setEventWindow(window.getWindow());
 
     int windowWidth, windowHeight;
     //Get the size of the window
@@ -181,14 +170,15 @@ void example3D()
         c1.setDeltaTime(dt * 100);
 
         //EVENTS
-        while (event.pollEvents())
+        Event event;
+        while (window.poll_events(event))
         {
-            switch (event.type())
+            switch (event.type)
             {
-            case EventTypes::Key:
-                if (event.event().keys.action == GLFW_PRESS)
+            case Event::EventType::KEY:
+                if (event.keys.action == GLFW_PRESS)
                 {
-                    switch (event.event().keys.key)
+                    switch (event.keys.key)
                     {
                     case GLFW_KEY_ESCAPE:
                         window.close();
@@ -201,9 +191,9 @@ void example3D()
                         break;
                     }
                 }
-                else if (event.event().keys.action == GLFW_RELEASE)
+                else if (event.keys.action == GLFW_RELEASE)
                 {
-                    switch (event.event().keys.key)
+                    switch (event.keys.key)
                     {
                     case GLFW_KEY_LEFT_CONTROL:
                         c1.setSpeed(camSpeed);
@@ -214,8 +204,8 @@ void example3D()
                     }
                 }
                 break;
-            case EventTypes::MouseButton:
-                if (event.event().mouseButton.action == GLFW_PRESS)
+            case Event::EventType::MOUSE_BUTTON:
+                if (event.mouseButton.action == GLFW_PRESS)
                 {
                     mouse_lastx = m.getPosition().x;
                     mouse_lasty = m.getPosition().y;
@@ -285,9 +275,9 @@ void example3D()
         for (int x = 0; x < 20; x++)
             for (int z = 0; z < 20; z++)
             {
-                drawCube(5, 5, 5, x * 5, sin(heightOfCube + (float)(x + z)/ cubeFrequency) * cubeAmplitude, z * 5,
+                drawCube(5, 5, 5, x * 5, sin(glfwGetTime() + (float)(x + z) / cubeFrequency)* cubeAmplitude, z * 5,
                          fmod(1 / (float)20 * (x), 1) + 0.1, 
-                         fmod(sin(heightOfCube + (float)(x + z) / 3), 1) + 0.1,
+                         fmod(sin(glfwGetTime() + (float)(x + z) / 3), 1) + 0.1,
                          fmod(1 / (float)20 * (z), 1) + 0.1, 
                          1);
             }

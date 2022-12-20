@@ -1,16 +1,10 @@
 #include "EventHandler.h"
 
-std::vector<EventHandler::events> EventHandler::eventList;
-std::vector<EventTypes> EventHandler::eventTypeList;
+std::vector<Event> EventHandler::eventList;
 
-EventHandler::events EventHandler::current_event() const
+Event EventHandler::current_event() const
 {
 	return topEvent;
-}
-
-EventTypes EventHandler::current_type() const
-{
-	return topEventType;
 }
 
 int EventHandler::event_count() const
@@ -54,78 +48,78 @@ void EventHandler::setup_events(GLFWwindow* window)
 
 void EventHandler::key_callback(GLFWwindow* window, int key, int scancode, int action, int mods)
 {
-	events temp;
+	Event temp;
 	temp.keys.key = key;
 	temp.keys.scancode = scancode;
 	temp.keys.action = action;
 	temp.keys.mods = mods;
-	eventTypeList.push_back(EventTypes::Key);
+	temp.type = Event::EventType::KEY;
 	eventList.push_back(temp);
 }
 
 void EventHandler::character_callback(GLFWwindow* window, unsigned int codepoint)
 {
-	events temp;
+	Event temp;
 	temp.character.codepoint = codepoint;
-	eventTypeList.push_back(EventTypes::Character);
+	temp.type = Event::EventType::CHARACTER;
 	eventList.push_back(temp);
 }
 
 void EventHandler::cursor_position_callback(GLFWwindow* window, double xpos, double ypos)
 {
-	events temp;
+	Event temp;
 	temp.cursorMoved.xpos = xpos;
 	temp.cursorMoved.ypos = ypos;
-	eventTypeList.push_back(EventTypes::CursorMoved);
+	temp.type = Event::EventType::CURSOR_MOVED;
 	eventList.push_back(temp);
 }
 
 void EventHandler::cursor_enter_callback(GLFWwindow* window, int entered)
 {
-	events temp;
+	Event temp;
 	temp.cursorEntered.entered = entered;
-	eventTypeList.push_back(EventTypes::CursorEntered);
+	temp.type = Event::EventType::CURSOR_ENTERED;
 	eventList.push_back(temp);
 }
 
 void EventHandler::mouse_button_callback(GLFWwindow* window, int button, int action, int mods)
 {
-	events temp;
+	Event temp;
 	temp.mouseButton.button = button;
 	temp.mouseButton.action = action;
 	temp.mouseButton.mods = mods;
-	eventTypeList.push_back(EventTypes::MouseButton);
+	temp.type = Event::EventType::MOUSE_BUTTON;
 	eventList.push_back(temp);
 }
 
 void EventHandler::scroll_callback(GLFWwindow* window, double xoffset, double yoffset)
 {
-	events temp;
+	Event temp;
 	temp.mouseScroll.xoffset = xoffset;
 	temp.mouseScroll.yoffset = yoffset;
-	eventTypeList.push_back(EventTypes::MouseScroll);
+	temp.type = Event::EventType::MOUSE_SCROLL;
 	eventList.push_back(temp);
 }
 
 void EventHandler::joystick_callback(int jid, int event)
 {
-	events temp;
+	Event temp;
 	temp.joystick.jid = jid;
 	temp.joystick.event = event;
-	eventTypeList.push_back(EventTypes::Joystick);
+	temp.type = Event::EventType::JOYSTICK;
 	eventList.push_back(temp);
 }
 
 void EventHandler::drop_callback(GLFWwindow* window, int count, const char** paths)
 {
-	events temp;
+	Event temp;
 	temp.drop.count = count;
 	
 	temp.drop.paths = count != 0 ? new std::string[count] : nullptr;
 	for (int i = 0; i < count; i++)
 		temp.drop.paths[i] = paths[i];
 	
-	eventTypeList.push_back(EventTypes::Drop);
+	temp.type = Event::EventType::DROP;
 	eventList.push_back(temp);
 }
 
@@ -133,74 +127,74 @@ void EventHandler::drop_callback(GLFWwindow* window, int count, const char** pat
 
 void EventHandler::window_close_callback(GLFWwindow* window)
 {
-	events temp;
-	eventTypeList.push_back(EventTypes::Closed);
+	Event temp;
+	temp.type = Event::EventType::CLOSED;
 	eventList.push_back(temp);
 }
 
 void EventHandler::window_size_callback(GLFWwindow* window, int width, int height)
 {
-	events temp;
+	Event temp;
 	temp.sizeChanged.width = width;
 	temp.sizeChanged.height = height;
-	eventTypeList.push_back(EventTypes::SizeChanged);
+	temp.type = Event::EventType::SIZE_CHANGED;
 	eventList.push_back(temp);
 }
 
 void EventHandler::framebuffer_size_callback(GLFWwindow* window, int width, int height)
 {
-	events temp;
+	Event temp;
 	temp.bufferChanged.width = width;
 	temp.bufferChanged.height = height;
-	eventTypeList.push_back(EventTypes::BufferChanged);
+	temp.type = Event::EventType::BUFFER_CHANGED;
 	eventList.push_back(temp);
 }
 
 void EventHandler::window_content_scale_callback(GLFWwindow* window, float xscale, float yscale)
 {
-	events temp;
+	Event temp;
 	temp.scaleChanged.xscale = xscale;
 	temp.scaleChanged.yscale = yscale;
-	eventTypeList.push_back(EventTypes::ScaleChanged);
+	temp.type = Event::EventType::SCALE_CHANGED;
 	eventList.push_back(temp);
 }
 
 void EventHandler::window_pos_callback(GLFWwindow* window, int xpos, int ypos)
 {
-	events temp;
+	Event temp;
 	temp.windowMoved.xpos = xpos;
 	temp.windowMoved.ypos = ypos;
-	eventTypeList.push_back(EventTypes::WindowMoved);
+	temp.type = Event::EventType::WINDOW_MOVED;
 	eventList.push_back(temp);
 }
 
 void EventHandler::window_iconify_callback(GLFWwindow* window, int iconified)
 {
-	events temp;
+	Event temp;
 	temp.iconified.iconified = iconified;
-	eventTypeList.push_back(EventTypes::Iconified);
+	temp.type = Event::EventType::ICONIFIED;
 	eventList.push_back(temp);
 }
 
 void EventHandler::window_maximize_callback(GLFWwindow* window, int maximized)
 {
-	events temp;
+	Event temp;
 	temp.maximized.maximized = maximized;
-	eventTypeList.push_back(EventTypes::Maximized);
+	temp.type = Event::EventType::MAXIMIZED;
 	eventList.push_back(temp);
 }
 
 void EventHandler::window_focus_callback(GLFWwindow* window, int focused)
 {
-	events temp;
+	Event temp;
 	temp.focused.focused = focused;
-	eventTypeList.push_back(EventTypes::Focused);
+	temp.type = Event::EventType::FOCUSED;
 	eventList.push_back(temp);
 }
 
 void EventHandler::window_refresh_callback(GLFWwindow* window)
 {
-	events temp;
-	eventTypeList.push_back(EventTypes::Refresh);
+	Event temp;
+	temp.type = Event::EventType::REFRESH;
 	eventList.push_back(temp);
 }

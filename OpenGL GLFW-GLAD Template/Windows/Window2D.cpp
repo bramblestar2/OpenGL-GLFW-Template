@@ -31,6 +31,8 @@ Window2D::Window2D(const unsigned int _Width,
     glfwSetWindowPos(window, width / 2 - (_Width / 2), height / 2 - (_Height / 2));
 
     glfwMakeContextCurrent(window);
+
+    handler.setup_events(window);
 }
 
 Window2D::Window2D()
@@ -167,4 +169,20 @@ void Window2D::display()
         view->update();
 
     glfwSwapBuffers(window);
+}
+
+bool Window2D::poll_events(Event& event)
+{
+    glfwPollEvents();
+
+    if (!handler.isEmpty())
+    {
+        handler.pop_event();
+        event = handler.current_event();
+
+        return true;
+    }
+    else 
+        return false;
+
 }
