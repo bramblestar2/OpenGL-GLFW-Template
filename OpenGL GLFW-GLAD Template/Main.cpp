@@ -175,6 +175,9 @@ void example3D()
         {
             switch (event.type)
             {
+            case Event::EventType::SIZE_CHANGED:
+                c1.setSize(Vec2f(event.sizeChanged.width, event.sizeChanged.height));
+                break;
             case Event::EventType::KEY:
                 if (event.keys.action == GLFW_PRESS)
                 {
@@ -271,13 +274,13 @@ void example3D()
         //Clear all drawings that were made to the window
         window.clear(0, 0, 0, 0);
 
-
+        /* Draws the cubes to window */
         for (int x = 0; x < 20; x++)
             for (int z = 0; z < 20; z++)
             {
                 drawCube(5, 5, 5, x * 5, sin(glfwGetTime() + (float)(x + z) / cubeFrequency)* cubeAmplitude, z * 5,
                          fmod(1 / (float)20 * (x), 1) + 0.1, 
-                         fmod(sin(glfwGetTime() + (float)(x + z) / 3), 1) + 0.1,
+                         fmod(sin(glfwGetTime() + (float)(x + z) / cubeFrequency), 1) + 0.1,
                          fmod(1 / (float)20 * (z), 1) + 0.1, 
                          1);
             }
@@ -287,10 +290,16 @@ void example3D()
     }
 }
 
+
+/* 
+            DRAW A CUBE TO SCREEN
+               (For example3d)
+*/
 void drawCube(const float width, const float length, const float height, 
               const float xpos, const float ypos, const float zpos,
               const float r, const float g, const float b, const float a)
 {
+    /* Vertices for the cube. 24 total vertices */
     GLfloat cube[] =
     {
         //Position                                  Color           Normals
@@ -326,16 +335,24 @@ void drawCube(const float width, const float length, const float height,
          width+xpos,  height+ypos,   zpos,          r, g, b, a,     0,1,0,
     };
     
+    /* Enable vertex, color and normals states */
     glEnableClientState(GL_VERTEX_ARRAY);
     glEnableClientState(GL_COLOR_ARRAY);
     glEnableClientState(GL_NORMAL_ARRAY);
 
+    /* 
+        Sets the size of the ____ (Ex: Color) array, the type of the array
+       The total size of the array, multiplied by how many positions, colors, 
+       and normals you have for a single point, then the pointer to the array
+       (Add an offset if needed) 
+    */
     glVertexPointer(3, GL_FLOAT, 10 * sizeof(GLfloat), cube);
     glColorPointer(4, GL_FLOAT, 10 * sizeof(GLfloat), cube + 3);
     glNormalPointer(GL_FLOAT, 10 * sizeof(GLfloat), cube + 7);
 
-    //glDisableClientState(GL_NORMAL_ARRAY);
+    /* Disable texture coordinates */
     glDisableClientState(GL_TEXTURE_COORD_ARRAY);
 
+    /* Draw the array to screen */
     glDrawArrays(GL_QUADS, 0, 24);
 }

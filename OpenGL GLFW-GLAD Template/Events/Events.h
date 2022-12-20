@@ -8,30 +8,35 @@
 class Event
 {
 protected:
+	
 	struct Key
 	{
-		int key, scancode, action, mods;
+		int key; //The key thats been pressed
+		int scancode; //The id of a key (can differ from platforms)
+		int action; //If the key is pressed, released, or held
+		int mods;
 	};
 
 	struct Character
 	{
-		int codepoint;
+		int codepoint; //The key thats been pressed
 	};
 
 	struct CursorMoved
 	{
-		double xpos, ypos;
+		double xpos; //X position of mouse
+		double ypos; //Y position of mouse
 	};
 
 	struct CursorEntered
 	{
-		int entered;
+		int entered; //The mouse has entered or left the window
 	};
 
 	struct MouseButton
 	{
-		int button;
-		int action;
+		int button; //What button was pressed
+		int action; //If the button is pressed or released
 		int mods;
 	};
 
@@ -43,13 +48,14 @@ protected:
 
 	struct Joystick
 	{
-		int jid, event;
+		int jid;
+		int event;
 	};
 
 	struct Drop
 	{
-		int count;
-		std::string* paths;
+		int count; //The count of the files that were dropped
+		std::string* paths; //The paths of the dropped files
 	};
 
 	//Window events
@@ -63,25 +69,29 @@ protected:
 	//Window size change
 	struct SizeChanged
 	{
-		int width, height;
+		int width;
+		int height;
 	};
 
 	//Frame buffer size change
 	struct BufferChanged
 	{
-		int width, height;
+		int width;
+		int height;
 	};
 
 	//Content scale change
 	struct ScaleChanged
 	{
-		float xscale, yscale;
+		float xscale;
+		int yscale;
 	};
 
 	//Window position moved
 	struct WindowMoved
 	{
-		int xpos, ypos;
+		int xpos; 
+		int ypos;
 	};
 
 	//Window Iconified
