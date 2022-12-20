@@ -6,33 +6,51 @@
 #include "Essentials/Mouse/Mouse.h"
 #include "View/View.h"
 
+//Has an example of using the Window2D class
 void example2D();
+//Has an example of using the Window3D class
 void example3D();
+//This is for example3D();
 void drawCube(const float width, const float length, const float height,
               const float xpos, const float ypos, const float zpos,
               const float r, const float g, const float b, const float a);
 
 int main()
 {
+    //Has an example of using the Window2D class
     //example2D();
 
+    //Has an example of using the Window3D class
     example3D();
 
     return 0;
 }
 
+/*
+            EXAMPLE OF 2D WINDOW
+*/
 void example2D()
 {
+    //Create's a window with 300x300 size, titled "Window"
+    //There is a optional parameter for a transparent window
     Window2D window(300, 300, "Window", true);
+    //Set decorated changes whether there is a titlebar or not
     window.setDecorated(false);
     glfwSwapInterval(1);
 
+    //Handles all of the events from glfw
     Events event;
+    //Sets the window that we will be getting the
+    //events from
     event.setEventWindow(window.getWindow());
 
+    //Create a 2D Viewport that has a size of 300x300
+    //There is an optional parameter for the position of the view
     View v1(Vec2f(300, 300));
+    //Sets the viewport that will be used
     window.setView(&v1);
 
+    //Mouse... Nothing more
     Mouse m;
 
     while (window.isOpen())
@@ -56,8 +74,10 @@ void example2D()
             }
         }
 
+        //Clear all drawings that were made to the window
         window.clear(10, 10, 10, 0);
 
+        /* Example Stuff */
         float xpos, ypos;
         xpos = sin(glfwGetTime());
         ypos = cos(glfwGetTime());
@@ -76,29 +96,49 @@ void example2D()
         glVertex2f(200 + (xpos * 100), 200 + (ypos * 100));
         glVertex2f(200 + (xpos * 100), 100 + (ypos * 100));
         glEnd();
+        /* Example Stuff */
 
+        //Displays drawn elements to the window
         window.display();
     }
 }
 
+
+/*
+            EXAMPLE OF 3D WINDOW
+*/
 void example3D()
 {
-    Window3D window(600, 500, "Window");
-    //window.setDecorated(false);
+    //Create a 3D window with the size of 600x500 thats titled "Window"
+    //There is a optional parameter for a transparent window
+    Window3D window(600, 500, "Window", true);
+    //Set decorated changes whether there is a titlebar or not
+    window.setDecorated(false);
     glfwSwapInterval(1);
 
+    //Handles all of the events from glfw
     Events event;
+    //Sets the window that we will be getting the
+    //events from
     event.setEventWindow(window.getWindow());
 
     int windowWidth, windowHeight;
+    //Get the size of the window
     window.getSize(&windowWidth, &windowHeight);
+    //Create a camera that has the size of the window
+    //There is a optional parameter for the position
     Camera c1(Vec2f(windowWidth, windowHeight));
+    //Enables depth to be drawn correctly
     c1.enableDepth();
+    //Sets the view distance of the camera
     c1.setViewDistance(1, 500);
+    //Sets the position of the camera
     c1.setPosition(glm::vec3(-30,0,5));
+    //Sets the speed of the camera
     float camSpeed = 1;
     c1.setSpeed(camSpeed);
 
+    //Sets the camera that will be used
     window.setCamera(&c1);
 
     //Mouse movement for camera
@@ -109,6 +149,7 @@ void example3D()
 
     double last_frame = glfwGetTime();
 
+    /* Lights */
     GLfloat light0_diffuse[] = { 1.0, 1.0, 1.0, 1.0 };
 
     GLfloat light0_position[] = { 0.0, 0.0, 1.0, 0.0 };
@@ -120,9 +161,13 @@ void example3D()
     glColorMaterial(GL_FRONT, GL_DIFFUSE);
     glEnable(GL_COLOR_MATERIAL);
     glEnable(GL_NORMALIZE);
+    /* Lights */
 
+    /* Fun stuff */
     float heightOfCube = 0.1f;
-    float adjustHeight = 10.f;
+    float cubeAmplitude = 10.f;
+    float cubeFrequency = 3.f;
+    /* Fun stuff */
 
 
     while (window.isOpen())
@@ -131,6 +176,8 @@ void example3D()
         double dt = glfwGetTime() - last_frame;
         last_frame = glfwGetTime();
 
+        //This is so that the speed of the camera isnt dependent
+        //on framerate
         c1.setDeltaTime(dt * 100);
 
         //EVENTS
@@ -190,15 +237,22 @@ void example3D()
             c1.move(Camera_Movement::UP);
         else if (glfwGetKey(window.getWindow(), GLFW_KEY_LEFT_SHIFT))
             c1.move(Camera_Movement::DOWN);
+        /* CAMERA MOVEMENT */
 
+        /* Fun Controls */
         if (glfwGetKey(window.getWindow(), GLFW_KEY_LEFT))
             heightOfCube -= 0.1f;
         else if (glfwGetKey(window.getWindow(), GLFW_KEY_RIGHT))
             heightOfCube += 0.1f;
         if (glfwGetKey(window.getWindow(), GLFW_KEY_UP))
-            adjustHeight += 1.f;
+            cubeAmplitude += 1.f;
         else if (glfwGetKey(window.getWindow(), GLFW_KEY_DOWN))
-            adjustHeight -= 1.f;
+            cubeAmplitude -= 1.f;
+        if (glfwGetKey(window.getWindow(), GLFW_KEY_Q))
+            cubeFrequency += 0.1f;
+        else if (glfwGetKey(window.getWindow(), GLFW_KEY_E))
+            cubeFrequency -= 0.1f;
+        /* Fun Controls */
 
         //Mouse
         if (glfwGetMouseButton(window.getWindow(), GLFW_MOUSE_BUTTON_LEFT) == GLFW_PRESS)
@@ -224,19 +278,21 @@ void example3D()
                 c1.setPitch(-89.f);
         }
 
+        //Clear all drawings that were made to the window
         window.clear(0, 0, 0, 0);
 
 
         for (int x = 0; x < 20; x++)
             for (int z = 0; z < 20; z++)
             {
-                drawCube(10, 10, 10, x * 10, sin(heightOfCube + (float)(x + z)/ 3) * adjustHeight, z * 10,
+                drawCube(5, 5, 5, x * 5, sin(heightOfCube + (float)(x + z)/ cubeFrequency) * cubeAmplitude, z * 5,
                          fmod(1 / (float)20 * (x), 1) + 0.1, 
                          fmod(sin(heightOfCube + (float)(x + z) / 3), 1) + 0.1,
                          fmod(1 / (float)20 * (z), 1) + 0.1, 
                          1);
             }
 
+        //Displays drawn elements to the window
         window.display();
     }
 }
