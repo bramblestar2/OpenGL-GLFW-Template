@@ -66,8 +66,7 @@ void Window2D::setPosition(const int _X, const int _Y)
 
 void Window2D::move(const int _X, const int _Y)
 {
-    Vec2i window_pos;
-    getPosition(&window_pos.x, &window_pos.y);
+    Vec2i window_pos = getPosition();
     glfwSetWindowPos(window, window_pos.x + _X, window_pos.y + _Y);
 }
 
@@ -120,14 +119,18 @@ void Window2D::setContext(const int depthBits, const int stencilBits,
     glfwSetWindowAttrib(window, GLFW_CONTEXT_VERSION_MINOR, minorVersion);
 }
 
-void Window2D::getSize(int* _Width, int* _Height)
+Vec2i Window2D::getSize()
 {
-    glfwGetWindowSize(window, _Width, _Height);
+    Vec2i size;
+    glfwGetWindowSize(window, &size.x, &size.y);
+    return size;
 }
 
-void Window2D::getPosition(int* _X, int* _Y)
+Vec2i Window2D::getPosition()
 {
-    glfwGetWindowPos(window, _X, _Y);
+    Vec2i pos;
+    glfwGetWindowPos(window, &pos.x, &pos.y);
+    return pos;
 }
 
 GLFWwindow* Window2D::getWindow()

@@ -80,8 +80,8 @@ void example2D()
         ypos = cos(glfwGetTime());
 
         Vec2i pos, size;
-        window.getPosition(&pos.x, &pos.y);
-        window.getSize(&size.x, &size.y);
+        pos = window.getPosition();
+        size = window.getSize();
         Vec2i windowCenterPos = Vec2i(pos.x + (size.x / 2), pos.y + (size.y / 2));
         window.move((m.getPosition().x - windowCenterPos.x) / 10 + (xpos * (size.x / 20)),
             (m.getPosition().y - windowCenterPos.y) / 10 + (ypos * (size.y / 20)));
@@ -113,15 +113,12 @@ void example3D()
     //Create a 3D window with the size of 600x500 thats titled "Window"
     //There is a optional parameter for a transparent window
     Window3D window(600, 500, "Window", settings);
-    //Set decorated changes whether there is a titlebar or not
     glfwSwapInterval(1);
 
-    int windowWidth, windowHeight;
-    //Get the size of the window
-    window.getSize(&windowWidth, &windowHeight);
+    Vec2i windowSize = window.getSize();
     //Create a camera that has the size of the window
     //There is a optional parameter for the position
-    Camera c1(Vec2f(windowWidth, windowHeight));
+    Camera c1(Vec2f(windowSize.x, windowSize.y));
     //Enables depth to be drawn correctly
     c1.enableDepth();
     //Sets the view distance of the camera

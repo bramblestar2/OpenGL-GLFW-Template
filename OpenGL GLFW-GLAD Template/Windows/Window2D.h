@@ -34,8 +34,8 @@ public:
 	void setContext(const int depthBits = 0, const int stencilBits = 0,
 					const int majorVersion = 2, const int minorVersion = 0);
 
-	void getSize(int* _Width, int* _Height);
-	void getPosition(int* _X, int* _Y);
+	Vec2i getSize();
+	Vec2i getPosition();
 	GLFWwindow* getWindow();
 
 	bool isVisible();
