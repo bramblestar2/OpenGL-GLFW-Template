@@ -21,7 +21,7 @@ public:
 			eventList.pop_back();
 		}
 	}
-	Event current_event() const;
+	Events current_event() const;
 	int event_count() const;
 	bool isEmpty() const;
 	bool isSetup() const;
@@ -29,8 +29,8 @@ public:
 
 private:
 	bool setup = false;
-	static std::vector<Event> eventList;
-	Event topEvent = Event();
+	static std::vector<Events> eventList;
+	Events topEvent = Events();
 
 	static void key_callback(GLFWwindow* window, int key, int scancode, int action, int mods);
 	static void character_callback(GLFWwindow* window, unsigned int codepoint);

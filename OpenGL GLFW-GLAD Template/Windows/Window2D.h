@@ -46,7 +46,7 @@ public:
 	virtual void display();
 	void close();
 
-	bool poll_events(Event& event);
+	bool poll_events(Events& event);
 
 protected:
 	GLFWwindow* window;

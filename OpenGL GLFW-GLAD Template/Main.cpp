@@ -50,12 +50,12 @@ void example2D()
     while (window.isOpen())
     {
         //EVENTS
-        Event event;
+        Events event;
         while (window.poll_events(event))
         {
             switch (event.type)
             {
-            case Event::EventType::KEY:
+            case Events::EventType::KEY:
                 if (event.keys.action == GLFW_PRESS)
                 {
                     switch (event.keys.key)
@@ -170,15 +170,15 @@ void example3D()
         c1.setDeltaTime(dt * 100);
 
         //EVENTS
-        Event event;
+        Events event;
         while (window.poll_events(event))
         {
             switch (event.type)
             {
-            case Event::EventType::SIZE_CHANGED:
+            case Events::EventType::SIZE_CHANGED:
                 c1.setSize(Vec2f(event.sizeChanged.width, event.sizeChanged.height));
                 break;
-            case Event::EventType::KEY:
+            case Events::EventType::KEY:
                 if (event.keys.action == GLFW_PRESS)
                 {
                     switch (event.keys.key)
@@ -207,7 +207,7 @@ void example3D()
                     }
                 }
                 break;
-            case Event::EventType::MOUSE_BUTTON:
+            case Events::EventType::MOUSE_BUTTON:
                 if (event.mouseButton.action == GLFW_PRESS)
                 {
                     mouse_lastx = m.getPosition().x;

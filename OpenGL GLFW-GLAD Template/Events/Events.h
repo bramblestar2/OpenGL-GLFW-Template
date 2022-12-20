@@ -1,11 +1,7 @@
 #pragma once
 #include <string>
 
-//REWORKING EVENTS
-//AND EVENTHANDLER
-//When this is finished, it will be renamed
-//Events
-class Event
+class Events
 {
 protected:
 	
@@ -141,7 +137,7 @@ public:
 		REFRESH,
 	};
 
-	~Event()
+	~Events()
 	{
 		if (type == EventType::DROP)
 			if (drop.paths != nullptr)

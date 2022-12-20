@@ -171,7 +171,7 @@ void Window2D::display()
     glfwSwapBuffers(window);
 }
 
-bool Window2D::poll_events(Event& event)
+bool Window2D::poll_events(Events& event)
 {
     glfwPollEvents();
 
