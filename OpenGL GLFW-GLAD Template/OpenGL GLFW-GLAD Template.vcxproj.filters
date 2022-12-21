@@ -34,6 +34,24 @@
     <Filter Include="Header Files\Header">
       <UniqueIdentifier>{90a03a87-5ebd-46f4-87b8-1f030c5f128b}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Source Files\Essentials\Inputs">
+      <UniqueIdentifier>{8d424b86-36d6-4af0-80bb-9c1d086047d6}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\Essentials\Visual">
+      <UniqueIdentifier>{84534508-794e-4770-8f2c-c1024872b3b5}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\Essentials\Additional">
+      <UniqueIdentifier>{ecedbfcb-c4c0-47b7-b3d8-c116e675307a}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Header Files\Essentials\Inputs">
+      <UniqueIdentifier>{fc0eaade-6758-406a-afaa-27a9a6293131}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Header Files\Essentials\Additional">
+      <UniqueIdentifier>{7f82f28e-6774-452d-938c-b768ce047f37}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Header Files\Essentials\Visual">
+      <UniqueIdentifier>{e2c31092-8274-49b2-897b-8b8f861d3f3b}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Main.cpp">
@@ -54,32 +72,41 @@
     <ClCompile Include="Events\Events.cpp">
       <Filter>Source Files\Events</Filter>
     </ClCompile>
-    <ClCompile Include="Essentials\Vec2\Vec2.cpp">
+    <ClCompile Include="Essentials\Vertex\Vertex2D.cpp">
       <Filter>Source Files\Essentials</Filter>
     </ClCompile>
-    <ClCompile Include="Essentials\Vec3\Vec3.cpp">
-      <Filter>Source Files\Essentials</Filter>
-    </ClCompile>
-    <ClCompile Include="Essentials\Mouse\Mouse.cpp">
-      <Filter>Source Files\Essentials</Filter>
-    </ClCompile>
-    <ClCompile Include="Camera\Camera.cpp">
-      <Filter>Source Files\Essentials</Filter>
-    </ClCompile>
-    <ClCompile Include="View\View.cpp">
-      <Filter>Source Files\Essentials</Filter>
-    </ClCompile>
-    <ClCompile Include="Essentials\ContextSettings\ContextSettings.cpp">
-      <Filter>Source Files\Essentials</Filter>
-    </ClCompile>
-    <ClCompile Include="Essentials\Clock\Clock.cpp">
+    <ClCompile Include="Essentials\VertexArray\VertexArray2D.cpp">
       <Filter>Source Files\Essentials</Filter>
     </ClCompile>
     <ClCompile Include="Essentials\Joystick\Joystick.cpp">
-      <Filter>Source Files\Essentials</Filter>
+      <Filter>Source Files\Essentials\Inputs</Filter>
     </ClCompile>
     <ClCompile Include="Essentials\Keyboard\Keyboard.cpp">
-      <Filter>Source Files\Essentials</Filter>
+      <Filter>Source Files\Essentials\Inputs</Filter>
+    </ClCompile>
+    <ClCompile Include="Essentials\Mouse\Mouse.cpp">
+      <Filter>Source Files\Essentials\Inputs</Filter>
+    </ClCompile>
+    <ClCompile Include="Camera\Camera.cpp">
+      <Filter>Source Files\Essentials\Visual</Filter>
+    </ClCompile>
+    <ClCompile Include="View\View.cpp">
+      <Filter>Source Files\Essentials\Visual</Filter>
+    </ClCompile>
+    <ClCompile Include="Essentials\Vec3\Vec3.cpp">
+      <Filter>Source Files\Essentials\Additional</Filter>
+    </ClCompile>
+    <ClCompile Include="Essentials\Clock\Clock.cpp">
+      <Filter>Source Files\Essentials\Additional</Filter>
+    </ClCompile>
+    <ClCompile Include="Essentials\ContextSettings\ContextSettings.cpp">
+      <Filter>Source Files\Essentials\Additional</Filter>
+    </ClCompile>
+    <ClCompile Include="Essentials\Vec2\Vec2.cpp">
+      <Filter>Source Files\Essentials\Additional</Filter>
+    </ClCompile>
+    <ClCompile Include="Essentials\Vec4\Vec4.cpp">
+      <Filter>Source Files\Essentials\Additional</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -95,35 +122,47 @@
     <ClInclude Include="Windows\Window3D.h">
       <Filter>Header Files\Windows</Filter>
     </ClInclude>
-    <ClInclude Include="Essentials\Vec2\Vec2.h">
-      <Filter>Header Files\Essentials</Filter>
-    </ClInclude>
-    <ClInclude Include="Essentials\Vec3\Vec3.h">
-      <Filter>Header Files\Essentials</Filter>
-    </ClInclude>
-    <ClInclude Include="Essentials\Mouse\Mouse.h">
-      <Filter>Header Files\Essentials</Filter>
-    </ClInclude>
-    <ClInclude Include="Camera\Camera.h">
-      <Filter>Header Files\Essentials</Filter>
-    </ClInclude>
-    <ClInclude Include="View\View.h">
-      <Filter>Header Files\Essentials</Filter>
-    </ClInclude>
-    <ClInclude Include="Essentials\ContextSettings\ContextSettings.h">
-      <Filter>Header Files\Essentials</Filter>
-    </ClInclude>
     <ClInclude Include="Header\Graphics.h">
       <Filter>Header Files\Header</Filter>
     </ClInclude>
-    <ClInclude Include="Essentials\Clock\Clock.h">
-      <Filter>Header Files\Essentials</Filter>
+    <ClInclude Include="Camera\Camera.h">
+      <Filter>Header Files\Essentials\Visual</Filter>
     </ClInclude>
-    <ClInclude Include="Essentials\Joystick\Joystick.h">
-      <Filter>Header Files\Essentials</Filter>
+    <ClInclude Include="View\View.h">
+      <Filter>Header Files\Essentials\Visual</Filter>
+    </ClInclude>
+    <ClInclude Include="Essentials\Clock\Clock.h">
+      <Filter>Header Files\Essentials\Additional</Filter>
+    </ClInclude>
+    <ClInclude Include="Essentials\ContextSettings\ContextSettings.h">
+      <Filter>Header Files\Essentials\Additional</Filter>
+    </ClInclude>
+    <ClInclude Include="Essentials\Vec2\Vec2.h">
+      <Filter>Header Files\Essentials\Additional</Filter>
+    </ClInclude>
+    <ClInclude Include="Essentials\Vec3\Vec3.h">
+      <Filter>Header Files\Essentials\Additional</Filter>
+    </ClInclude>
+    <ClInclude Include="Essentials\Mouse\Mouse.h">
+      <Filter>Header Files\Essentials\Inputs</Filter>
     </ClInclude>
     <ClInclude Include="Essentials\Keyboard\Keyboard.h">
+      <Filter>Header Files\Essentials\Inputs</Filter>
+    </ClInclude>
+    <ClInclude Include="Essentials\Joystick\Joystick.h">
+      <Filter>Header Files\Essentials\Inputs</Filter>
+    </ClInclude>
+    <ClInclude Include="Essentials\VertexArray\VertexArray2D.h">
       <Filter>Header Files\Essentials</Filter>
+    </ClInclude>
+    <ClInclude Include="Essentials\Vertex\Vertex2D.h">
+      <Filter>Header Files\Essentials</Filter>
+    </ClInclude>
+    <ClInclude Include="Essentials\Vec4\Vec4.h">
+      <Filter>Header Files\Essentials\Additional</Filter>
+    </ClInclude>
+    <ClInclude Include="Header\Graphics2D.h">
+      <Filter>Header Files\Header</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>

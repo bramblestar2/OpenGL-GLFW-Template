@@ -6,8 +6,7 @@ Keyboard::Keyboard()
 
 bool Keyboard::isKeyPressed(int _Key)
 {
-    GLFWwindow* currentContext = glfwGetCurrentContext();
-    return glfwGetKey(currentContext, _Key);
+    return glfwGetKey(glfwGetCurrentContext(), _Key);
 }
 
 std::string Keyboard::getKeyName(int _Key, int _Scancode)
