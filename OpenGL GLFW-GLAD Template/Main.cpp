@@ -36,7 +36,6 @@ void example2D()
     settings.transparent = true;
 
     //Create's a window with 300x300 size, titled "Window"
-    //There is a optional parameter for a transparent window
     Window2D window(300, 300, "Window", settings);
     glfwSwapInterval(1);
 
@@ -111,7 +110,6 @@ void example3D()
     settings.decorated = false;
 
     //Create a 3D window with the size of 600x500 thats titled "Window"
-    //There is a optional parameter for a transparent window
     Window3D window(600, 500, "Window", settings);
     glfwSwapInterval(1);
 
@@ -131,6 +129,10 @@ void example3D()
 
     //Sets the camera that will be used
     window.setCamera(&c1);
+
+    //Enables transparent drawings
+    glBlendFunc(GL_SRC_ALPHA, GL_ONE_MINUS_SRC_ALPHA);
+    glEnable(GL_BLEND);
 
     //Mouse movement for camera
     Mouse m;
@@ -288,13 +290,6 @@ void example3D()
                          1);
             }
 
-        float xpos, ypos, zpos;
-        xpos = c1.getPosition().x - 0 + (c1.getCameraDirection().x * 20);
-        ypos = c1.getPosition().y - 0 + (c1.getCameraDirection().y * 20);
-        zpos = c1.getPosition().z - 0 + (c1.getCameraDirection().z * 20);
-        
-        drawCube(1, 1, 1, xpos, ypos, zpos, 1, 1, 1, 1);
-
         //Displays drawn elements to the window
         window.display();
     }
@@ -302,8 +297,8 @@ void example3D()
 
 
 /* 
-            DRAW A CUBE TO SCREEN
-               (For example3d)
+            DRAWS A CUBE TO SCREEN
+                (For example3d)
 */
 void drawCube(const float width, const float length, const float height, 
               const float xpos, const float ypos, const float zpos,
