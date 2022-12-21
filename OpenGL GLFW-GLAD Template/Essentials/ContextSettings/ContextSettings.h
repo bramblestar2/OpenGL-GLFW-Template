@@ -14,6 +14,7 @@ public:
 	bool resizable;
 	bool sRGB;
 	
+	int refreshRate;
 	int antiAliasing;
 	int depthBits;
 	int stencilBits;

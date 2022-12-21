@@ -7,6 +7,7 @@ ContextSettings::ContextSettings(int depthBits, int stencilBits, int antiAliasin
 	this->resizable = true;
 	this->sRGB = false;
 
+	this->refreshRate = 0;
 	this->antiAliasing = antiAliasing;
 	this->depthBits = depthBits;
 	this->stencilBits = stencilBits;

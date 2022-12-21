@@ -13,6 +13,7 @@ Window2D::Window2D(const unsigned int _Width,
     if (!glfwInit())
         return;
 
+    glfwWindowHint(GLFW_REFRESH_RATE, _Settings.refreshRate);
     glfwWindowHint(GLFW_SAMPLES, _Settings.antiAliasing);
     glfwWindowHint(GLFW_DEPTH_BITS, _Settings.depthBits);
     glfwWindowHint(GLFW_STENCIL_BITS, _Settings.stencilBits);
