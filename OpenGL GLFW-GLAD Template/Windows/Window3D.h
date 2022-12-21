@@ -1,5 +1,4 @@
-#ifndef WINDOW_3D_H
-#define WINDOW_3D_H
+#pragma once
 
 #include "Window2D.h"
 #include "../Camera/Camera.h"
@@ -20,5 +19,3 @@ public:
 private:
 	Camera* camera;
 };
-
-#endif

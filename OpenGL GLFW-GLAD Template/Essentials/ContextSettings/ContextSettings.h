@@ -1,5 +1,4 @@
-#ifndef CONTEXT_SETTINGS_H
-#define CONTEXT_SETTINGS_H
+#pragma once
 
 #define GLFW_INCLUDE_NONE
 #include <GLFW/glfw3.h>
@@ -23,5 +22,3 @@ public:
 	int minorVersion;
 	int majorVersion;
 };
-
-#endif

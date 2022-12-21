@@ -1,5 +1,4 @@
-#ifndef GRAPHICS_2D_H
-#define GRAPHICS_2D_H
+#pragma once
 
 #include "../Essentials/ContextSettings/ContextSettings.h"
 #include "../Events/Events.h"
@@ -19,5 +18,3 @@
 
 #include "../Essentials/Vertex/Vertex2D.h"
 #include "../Essentials/VertexArray/VertexArray2D.h"
-
-#endif

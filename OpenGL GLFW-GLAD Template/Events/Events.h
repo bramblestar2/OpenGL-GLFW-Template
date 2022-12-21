@@ -1,5 +1,4 @@
-#ifndef EVENTS_H
-#define EVENTS_H
+#pragma once
 
 #include <string>
 
@@ -170,5 +169,3 @@ public:
 		Refresh refresh;
 	};
 };
-
-#endif

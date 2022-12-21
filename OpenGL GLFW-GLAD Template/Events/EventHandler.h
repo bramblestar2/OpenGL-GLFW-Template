@@ -1,5 +1,4 @@
-#ifndef EVENT_HANDLER_H
-#define EVENT_HANDLER_H
+#pragma once
 
 #define GLFW_INCLUDE_NONE
 #include <GLFW/glfw3.h>
@@ -54,6 +53,3 @@ private:
 	static void window_focus_callback(GLFWwindow* window, int focused);
 	static void window_refresh_callback(GLFWwindow* window);
 };
-
-
-#endif

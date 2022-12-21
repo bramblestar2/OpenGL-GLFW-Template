@@ -1,5 +1,4 @@
-#ifndef KEYBOARD_H
-#define KEYBOARD_H
+#pragma once
 
 #define GLFW_INCLUDE_NONE
 #include <GLFW/glfw3.h>
@@ -15,5 +14,3 @@ public:
 	static std::string getKeyName(int _Key, int _Scancode);
 	static int getScancode(int _Key);
 };
-
-#endif

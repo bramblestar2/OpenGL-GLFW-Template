@@ -1,5 +1,4 @@
-#ifndef WINDOW_2D_H
-#define WINDOW_2D_H
+#pragma once
 
 #define GLFW_INCLUDE_NONE
 #include <GLFW/glfw3.h>
@@ -54,5 +53,3 @@ protected:
 	View* view;
 	EventHandler handler;
 };
-
-#endif

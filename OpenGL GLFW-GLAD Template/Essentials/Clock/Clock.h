@@ -1,5 +1,4 @@
-#ifndef CLOCK_H
-#define CLOCK_H
+#pragma once
 
 #define GLFW_INCLUDE_NONE
 #include <GLFW/glfw3.h>
@@ -14,5 +13,3 @@ public:
 private:
 	double time;
 };
-
-#endif
