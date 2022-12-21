@@ -40,3 +40,8 @@ bool Mouse::isButtonPressed(int _Button)
 {
 	return glfwGetMouseButton(glfwGetCurrentContext(), _Button);
 }
+
+void Mouse::setInputMode(GLFWwindow* _Window, int _State)
+{
+	glfwSetInputMode(_Window, GLFW_CURSOR, _State);
+}

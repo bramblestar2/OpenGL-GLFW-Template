@@ -78,6 +78,9 @@
     <ClCompile Include="Essentials\Joystick\Joystick.cpp">
       <Filter>Source Files\Essentials</Filter>
     </ClCompile>
+    <ClCompile Include="Essentials\Keyboard\Keyboard.cpp">
+      <Filter>Source Files\Essentials</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Events\EventHandler.h">
@@ -117,6 +120,9 @@
       <Filter>Header Files\Essentials</Filter>
     </ClInclude>
     <ClInclude Include="Essentials\Joystick\Joystick.h">
+      <Filter>Header Files\Essentials</Filter>
+    </ClInclude>
+    <ClInclude Include="Essentials\Keyboard\Keyboard.h">
       <Filter>Header Files\Essentials</Filter>
     </ClInclude>
   </ItemGroup>

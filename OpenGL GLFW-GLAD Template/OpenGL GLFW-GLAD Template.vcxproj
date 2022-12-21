@@ -153,6 +153,7 @@
     <ClCompile Include="Essentials\Clock\Clock.cpp" />
     <ClCompile Include="Essentials\ContextSettings\ContextSettings.cpp" />
     <ClCompile Include="Essentials\Joystick\Joystick.cpp" />
+    <ClCompile Include="Essentials\Keyboard\Keyboard.cpp" />
     <ClCompile Include="Essentials\Mouse\Mouse.cpp" />
     <ClCompile Include="Essentials\Vec2\Vec2.cpp" />
     <ClCompile Include="Essentials\Vec3\Vec3.cpp" />
@@ -169,6 +170,7 @@
     <ClInclude Include="Essentials\Clock\Clock.h" />
     <ClInclude Include="Essentials\ContextSettings\ContextSettings.h" />
     <ClInclude Include="Essentials\Joystick\Joystick.h" />
+    <ClInclude Include="Essentials\Keyboard\Keyboard.h" />
     <ClInclude Include="Essentials\Mouse\Mouse.h" />
     <ClInclude Include="Essentials\Vec2\Vec2.h" />
     <ClInclude Include="Essentials\Vec3\Vec3.h" />

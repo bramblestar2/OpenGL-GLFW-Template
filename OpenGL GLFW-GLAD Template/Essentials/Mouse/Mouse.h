@@ -18,6 +18,7 @@ public:
 	static Vec2d getPosition();
 	static Vec2d getPosition(GLFWwindow* _Window);
 	static bool isButtonPressed(int _Button);
+	static void setInputMode(GLFWwindow* _Window, int _State);
 private:
 
 };
