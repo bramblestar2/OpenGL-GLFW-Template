@@ -6,7 +6,6 @@ Window3D::Window3D(const unsigned int _Width,
 				   const ContextSettings _Settings)
 				   : Window2D(_Width, _Height, _Title, _Settings)
 {
-	//Window2D::setContext(24, 8, 2, 0);
 	camera = nullptr;
 }
 
