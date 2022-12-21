@@ -1,4 +1,6 @@
-#pragma once
+#ifndef VIEW_H
+#define VIEW_H
+
 #define GLFW_INCLUDE_NONE
 #include <GLFW/glfw3.h>
 #include <GL/glew.h>
@@ -31,3 +33,4 @@ private:
 	bool m_updated;
 };
 
+#endif

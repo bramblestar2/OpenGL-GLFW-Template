@@ -1,4 +1,6 @@
-#pragma once
+#ifndef EVENT_HANDLER_H
+#define EVENT_HANDLER_H
+
 #define GLFW_INCLUDE_NONE
 #include <GLFW/glfw3.h>
 #include <GL/glew.h>
@@ -54,3 +56,4 @@ private:
 };
 
 
+#endif

@@ -1,4 +1,6 @@
-#pragma once
+#ifndef VEC2_H
+#define VEC2_H
+
 template<typename T>
 struct Vec2
 {
@@ -41,3 +43,5 @@ typedef Vec2<float> Vec2f;
 typedef Vec2<double> Vec2d;
 typedef Vec2<int> Vec2i;
 
+
+#endif

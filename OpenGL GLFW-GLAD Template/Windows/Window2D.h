@@ -1,4 +1,6 @@
-#pragma once
+#ifndef WINDOW_2D_H
+#define WINDOW_2D_H
+
 #define GLFW_INCLUDE_NONE
 #include <GLFW/glfw3.h>
 #include <GL/glew.h>
@@ -53,3 +55,4 @@ protected:
 	EventHandler handler;
 };
 
+#endif
