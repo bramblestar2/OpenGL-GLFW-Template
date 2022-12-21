@@ -150,15 +150,15 @@
   </ItemDefinitionGroup>
   <ItemGroup>
     <ClCompile Include="Camera\Camera.cpp" />
-    <ClCompile Include="Clock.cpp" />
+    <ClCompile Include="Essentials\Clock\Clock.cpp" />
     <ClCompile Include="Essentials\ContextSettings\ContextSettings.cpp" />
+    <ClCompile Include="Essentials\Joystick\Joystick.cpp" />
     <ClCompile Include="Essentials\Mouse\Mouse.cpp" />
     <ClCompile Include="Essentials\Vec2\Vec2.cpp" />
     <ClCompile Include="Essentials\Vec3\Vec3.cpp" />
     <ClCompile Include="Events\EventHandler.cpp" />
     <ClCompile Include="Events\Events.cpp" />
     <ClCompile Include="glad.c" />
-    <ClCompile Include="Joystick.cpp" />
     <ClCompile Include="Main.cpp" />
     <ClCompile Include="View\View.cpp" />
     <ClCompile Include="Windows\Window2D.cpp" />
@@ -166,21 +166,18 @@
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Camera\Camera.h" />
-    <ClInclude Include="Clock.h" />
+    <ClInclude Include="Essentials\Clock\Clock.h" />
     <ClInclude Include="Essentials\ContextSettings\ContextSettings.h" />
+    <ClInclude Include="Essentials\Joystick\Joystick.h" />
     <ClInclude Include="Essentials\Mouse\Mouse.h" />
     <ClInclude Include="Essentials\Vec2\Vec2.h" />
     <ClInclude Include="Essentials\Vec3\Vec3.h" />
     <ClInclude Include="Events\EventHandler.h" />
     <ClInclude Include="Events\Events.h" />
-    <ClInclude Include="Joystick.h" />
+    <ClInclude Include="Header\Graphics.h" />
     <ClInclude Include="View\View.h" />
     <ClInclude Include="Windows\Window2D.h" />
     <ClInclude Include="Windows\Window3D.h" />
-  </ItemGroup>
-  <ItemGroup>
-    <None Include="basic.fs" />
-    <None Include="basic.vs" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

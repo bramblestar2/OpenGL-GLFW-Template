@@ -1,10 +1,6 @@
 #include <iostream>
 
-#include "Windows/Window2D.h"
-#include "Windows/Window3D.h"
-#include "Events/Events.h"
-#include "Essentials/Mouse/Mouse.h"
-#include "View/View.h"
+#include "Header/Graphics.h"
 
 //Has an example of using the Window2D class
 void example2D();
@@ -284,9 +280,9 @@ void example3D()
                 float y = cos(glfwGetTime() + (float)(x) / cubeFrequency) *
                           sin(glfwGetTime() + (float)(z) / cubeFrequency) * cubeAmplitude;
                 drawCube(5, 5, 5, x * 5, y, z * 5,
-                         fmod(1 / (float)40 * (x), 1) + 0.1, 
+                         fmod(1 / 40.f * (x), 1) + 0.1, 
                          fmod(1 / (cubeAmplitude == 0 ? 1 : cubeAmplitude) * y, 1) + 0.1,
-                         fmod(1 / (float)40 * (z), 1) + 0.1, 
+                         fmod(1 / 40.f * (z), 1) + 0.1, 
                          1);
             }
 

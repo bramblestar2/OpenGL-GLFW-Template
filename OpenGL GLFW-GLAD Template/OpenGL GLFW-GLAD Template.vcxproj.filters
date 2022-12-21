@@ -31,8 +31,8 @@
     <Filter Include="Header Files\Essentials">
       <UniqueIdentifier>{ce2a4ea3-8c37-49bc-9eba-e2b329dbdebb}</UniqueIdentifier>
     </Filter>
-    <Filter Include="Resource Files\Shader">
-      <UniqueIdentifier>{a2cfc5e6-82ad-4324-acb2-2beb2e6f976c}</UniqueIdentifier>
+    <Filter Include="Header Files\Header">
+      <UniqueIdentifier>{90a03a87-5ebd-46f4-87b8-1f030c5f128b}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
   <ItemGroup>
@@ -69,14 +69,14 @@
     <ClCompile Include="View\View.cpp">
       <Filter>Source Files\Essentials</Filter>
     </ClCompile>
-    <ClCompile Include="Clock.cpp">
-      <Filter>Source Files</Filter>
+    <ClCompile Include="Essentials\ContextSettings\ContextSettings.cpp">
+      <Filter>Source Files\Essentials</Filter>
     </ClCompile>
-    <ClCompile Include="Joystick.cpp">
-      <Filter>Source Files</Filter>
+    <ClCompile Include="Essentials\Clock\Clock.cpp">
+      <Filter>Source Files\Essentials</Filter>
     </ClCompile>
-    <ClCompile Include="..\..\OpenGL-Particle-Sim\OpenGL GLFW-GLAD Template\Essentials\ContextSettings\ContextSettings.cpp">
-      <Filter>Source Files</Filter>
+    <ClCompile Include="Essentials\Joystick\Joystick.cpp">
+      <Filter>Source Files\Essentials</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -107,22 +107,17 @@
     <ClInclude Include="View\View.h">
       <Filter>Header Files\Essentials</Filter>
     </ClInclude>
-    <ClInclude Include="Clock.h">
-      <Filter>Header Files</Filter>
+    <ClInclude Include="Essentials\ContextSettings\ContextSettings.h">
+      <Filter>Header Files\Essentials</Filter>
     </ClInclude>
-    <ClInclude Include="Joystick.h">
-      <Filter>Header Files</Filter>
+    <ClInclude Include="Header\Graphics.h">
+      <Filter>Header Files\Header</Filter>
     </ClInclude>
-    <ClInclude Include="..\..\OpenGL-Particle-Sim\OpenGL GLFW-GLAD Template\Essentials\ContextSettings\ContextSettings.h">
-      <Filter>Header Files</Filter>
+    <ClInclude Include="Essentials\Clock\Clock.h">
+      <Filter>Header Files\Essentials</Filter>
     </ClInclude>
-  </ItemGroup>
-  <ItemGroup>
-    <None Include="basic.vs">
-      <Filter>Resource Files\Shader</Filter>
-    </None>
-    <None Include="basic.fs">
-      <Filter>Resource Files\Shader</Filter>
-    </None>
+    <ClInclude Include="Essentials\Joystick\Joystick.h">
+      <Filter>Header Files\Essentials</Filter>
+    </ClInclude>
   </ItemGroup>
 </Project>

@@ -32,14 +32,9 @@ Camera::~Camera()
 {
 }
 
-glm::vec3 Camera::getCameraDirection() const
+glm::vec3 Camera::getDirection() const
 {
 	return cameraFront;
-}
-
-glm::vec3 Camera::getCameraPosition() const
-{
-	return cameraPos;
 }
 
 float Camera::getSpeed() const
