@@ -24,7 +24,6 @@ public:
 	void enableNormal(bool);
 
 	void draw(GLenum _Mode);
-	glCheck(glClear(GL_COLOR_BUFFER_BIT));
 	//Idk how i would work these
 	void editVertex(int _Index, Vertex2D);
 	Vertex2D getVertex();
