@@ -142,7 +142,10 @@ public:
 	{
 		if (type == EventType::DROP)
 			if (drop.paths != nullptr)
+			{
 				delete[] drop.paths;
+				drop.paths = nullptr;
+			}
 	}
 
 	EventType type;

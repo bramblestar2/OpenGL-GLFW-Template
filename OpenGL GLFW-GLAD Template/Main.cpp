@@ -1,3 +1,5 @@
+//#pragma comment(linker, "/SUBSYSTEM:windows /ENTRY:mainCRTStartup")
+
 #include <iostream>
 
 #include "Header/Graphics.h"
@@ -212,6 +214,15 @@ void example3D()
                     mouse_lastx = m.getPosition().x;
                     mouse_lasty = m.getPosition().y;
                 }
+                break;
+                
+            case Events::EventType::DROP:
+
+                for (int i = 0; i < event.drop.count; i++)
+                {
+                    std::cout << event.drop.paths[i] << std::endl;
+                }
+
                 break;
             }
         }
