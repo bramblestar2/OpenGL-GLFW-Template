@@ -1,6 +1,7 @@
 #pragma once
 
 #include <string>
+#include <iostream>
 
 class Events
 {
@@ -57,12 +58,6 @@ protected:
 
 	//Window events
 
-	//Window closed
-	struct Closed
-	{
-
-	};
-
 	//Window size change
 	struct SizeChanged
 	{
@@ -109,12 +104,6 @@ protected:
 		int focused;
 	};
 
-	//Wubdiw damage and refresh
-	struct Refresh
-	{
-
-	};
-
 public:
 	enum class EventType
 	{
@@ -141,11 +130,13 @@ public:
 	~Events()
 	{
 		if (type == EventType::DROP)
+		{
 			if (drop.paths != nullptr)
 			{
 				delete[] drop.paths;
 				drop.paths = nullptr;
 			}
+		}
 	}
 
 	EventType type;
@@ -161,7 +152,6 @@ public:
 		Joystick joystick;
 		Drop drop;
 
-		Closed closed;
 		SizeChanged sizeChanged;
 		BufferChanged bufferChanged;
 		ScaleChanged scaleChanged;
@@ -169,6 +159,5 @@ public:
 		Iconified iconified;
 		Maximized maximized;
 		Focused focused;
-		Refresh refresh;
 	};
 };
