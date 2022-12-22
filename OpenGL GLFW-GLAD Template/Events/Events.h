@@ -133,8 +133,8 @@ public:
 		{
 			if (drop.paths != nullptr)
 			{
-				delete[] drop.paths;
-				drop.paths = nullptr;
+				//delete[] drop.paths;
+				//drop.paths = nullptr;
 			}
 		}
 	}

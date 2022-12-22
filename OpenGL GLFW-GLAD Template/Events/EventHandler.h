@@ -14,10 +14,27 @@
 class EventHandler
 {
 public:
+	~EventHandler()
+	{
+		if (topEvent.type == Events::EventType::DROP)
+			if (topEvent.drop.count != 0)
+				delete[] topEvent.drop.paths;
+
+		for (int i = 0; i < eventList.size(); i++)
+			if (eventList.at(i).type == Events::EventType::DROP)
+			{
+				delete[] eventList.at(i).drop.paths;
+			}
+	}
+
 	void pop_event()
 	{
 		if (!isEmpty())
 		{
+			if (topEvent.type == Events::EventType::DROP)
+				if (topEvent.drop.count != 0)
+					delete[] topEvent.drop.paths;
+
 			topEvent = eventList.at(eventList.size() - 1);
 			eventList.pop_back();
 		}
