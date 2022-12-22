@@ -104,8 +104,8 @@ void example2D()
 void example3D()
 {
     ContextSettings settings(24, 8, 0, 1, 2);
-    settings.transparent = true;
-    settings.decorated = false;
+    settings.transparent = false;
+    settings.decorated = true;
 
     //Create a 3D window with the size of 600x500 thats titled "Window"
     Window3D window(600, 500, "Window", settings);

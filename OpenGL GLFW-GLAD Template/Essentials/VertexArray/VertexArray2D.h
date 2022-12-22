@@ -16,14 +16,21 @@ class VertexArray2D
 public:
 	VertexArray2D();
 
+	void addVertex(Vertex2D);
+
 	void enableVertex(bool);
 	void enableColor(bool);
 	void enableTexture(bool);
 	void enableNormal(bool);
 
-	void draw(GLenum _Mode, GLenum _Type);
+	void draw(GLenum _Mode);
+	glCheck(glClear(GL_COLOR_BUFFER_BIT));
+	//Idk how i would work these
+	void editVertex(int _Index, Vertex2D);
+	Vertex2D getVertex();
+	int getVertexCount();
 private:
-	std::vector<Vertex2D> vertices;
+	std::vector<GLfloat> vertices;
 
 	bool vertex, color, texture, normal;
 };

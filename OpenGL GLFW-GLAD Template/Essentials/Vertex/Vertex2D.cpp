@@ -1,6 +1,6 @@
 #include "Vertex2D.h"
 
-Vertex2D::Vertex2D(const Vec2d _Position, const Vec4d _Color, const Vec2d _Texture, const Vec3d _Normal)
+Vertex2D::Vertex2D(const Vec2f _Position, const Vec4f _Color, const Vec2f _Texture, const Vec3f _Normal)
 {
 	position = _Position;
 	color = _Color;

@@ -7,11 +7,11 @@
 class Vertex2D
 {
 public:
-	Vertex2D(const Vec2d _Position = Vec2d(), const Vec4d _Color = Vec4d(),
-			 const Vec2d _Texture = Vec2d(), const Vec3d _Normal = Vec3d());
+	Vertex2D(const Vec2f _Position = Vec2f(), const Vec4f _Color = Vec4f(),
+			 const Vec2f _Texture = Vec2f(), const Vec3f _Normal = Vec3f());
 
-	Vec2d position;
-	Vec4d color;
-	Vec2d texture;
-	Vec3d normal;
+	Vec2f position;
+	Vec4f color;
+	Vec2f texture;
+	Vec3f normal;
 };
