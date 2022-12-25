@@ -290,6 +290,7 @@ void example3D()
             {
                 float y = cos(glfwGetTime() + (float)(x) / cubeFrequency) *
                           sin(glfwGetTime() + (float)(z) / cubeFrequency) * cubeAmplitude;
+
                 drawCube(5, 5, 5, x * 5, y, z * 5,
                          fmod(1 / 40.f * (x), 1) + 0.1, 
                          fmod(1 / (cubeAmplitude == 0 ? 1 : cubeAmplitude) * y, 1) + 0.1,
